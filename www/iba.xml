@@ -32,9 +32,10 @@
 		<Ingredient id="Cachaca" description="Cachaca" image="ingredients/Cachaca.png" />
 		<Ingredient id="Calvados" description="Calvados" image="ingredients/Calvados.png" />
 		<Ingredient id="CampariBitter" description="Campari Bitter" image="ingredients/CampariBitter.png" />
-		<Ingredient id="CelerySalt" description="CelerySalt" image="ingredients/Salt.png" />
+		<Ingredient id="CelerySalt" description="Celery Salt" image="ingredients/Salt.png" />
 		<Ingredient id="Champagne" description="Champagne" image="ingredients/Champagne.png" />
-		<Ingredient id="CherryBrandy" description="CherryBrandy" image="ingredients/CherryBrandy.png" />
+		<Ingredient id="Cherry" description="Cherry" image="ingredients/Cherry.png" />
+		<Ingredient id="CherryLiqueur" description="Cherry Liqueur" image="ingredients/CherryLiqueur.png" />
 		<Ingredient id="Coconut" description="Coconut" image="ingredients/Coconut.png" />
 		<Ingredient id="CoconutMilk" description="Coconut Milk" image="ingredients/Coconut.png" />
 		<Ingredient id="Coffee" description="Coffee" image="ingredients/Coffee.png" />
@@ -69,6 +70,7 @@
 		<Ingredient id="LemonSoda" description="Lemon Soda" image="ingredients/LemonSoda.png" />
 		<Ingredient id="LilletBlonde" description="Lillet Blonde" image="ingredients/LilletBlonde.png" />
 		<Ingredient id="Lime" description="Lime" image="ingredients/Lime.png" />
+		<Ingredient id="Mandarine" description="Mandarine" image="ingredients/Mandarine.png" />
 		<Ingredient id="Maraschino" description="Maraschino" image="ingredients/Maraschino.png" />
 		<Ingredient id="Midori" description="Midori" image="ingredients/Midori.png" />
 		<Ingredient id="Mint" description="Mint" image="ingredients/Mint.png" />
@@ -90,7 +92,7 @@
 		<Ingredient id="PeychaudsBitter" description="Peychaud&#39;s Bitter" image="ingredients/PeychaudsBitter.png" />
 		<Ingredient id="Pineapple" description="Pineapple" image="ingredients/Pineapple.png" />
 		<Ingredient id="Pisco" description="Pisco" image="ingredients/Pisco.png" />
-		<Ingredient id="PortoRed" description="Porto Red" image="ingredients/PortoRed.png" />
+		<Ingredient id="PortoRed" description="Red Porto" image="ingredients/PortoRed.png" />
 		<Ingredient id="Prosecco" description="Prosecco" image="ingredients/Prosecco.png" />
 		<Ingredient id="Raspberry" description="Raspberry" image="ingredients/Raspberry.png" />
 		<Ingredient id="RaspberrySyrup" description="Raspberry Syrup" image="ingredients/Raspberry.png" />
@@ -99,9 +101,9 @@
 		<Ingredient id="RedCurrant" description="Red Currant" image="ingredients/RedCurrant.png" />
 		<Ingredient id="RedHotChiliPeppers" description="Red Hot Chili Peppers" image="ingredients/RedHotChiliPeppers.png" />
 		<Ingredient id="RyeWhisky" description="Rye Whisky" image="ingredients/RyeWhisky.png" />
-		<Ingredient id="RumDark" description="Rum Dark" image="ingredients/RumDark.png" />
-		<Ingredient id="RumGold" description="Rum Gold" image="ingredients/RumGold.png" />
-		<Ingredient id="RumWhite" description="Rum White" image="ingredients/RumWhite.png" />
+		<Ingredient id="RumDark" description="Dark Rum" image="ingredients/RumDark.png" />
+		<Ingredient id="RumGold" description="Gold Rum" image="ingredients/RumGold.png" />
+		<Ingredient id="RumWhite" description="White Rum" image="ingredients/RumWhite.png" />
 		<Ingredient id="Salt" description="Salt" image="ingredients/Salt.png" />
 		<Ingredient id="SodaWater" description="SodaWater" image="ingredients/SodaWater.png" />
 		<Ingredient id="Strawberry" description="Strawberry" image="ingredients/Strawberry.png" />
@@ -115,9 +117,10 @@
 		<Ingredient id="Tomato" description="Tomato" image="ingredients/Tomato.png" />
 		<Ingredient id="TripleSec" description="Triple Sec" image="ingredients/TripleSec.png" />
 		<Ingredient id="Vanilla" description="Vanilla" image="ingredients/Vanilla.png" />
-		<Ingredient id="VermouthDry" description="Vermouth Dry" image="ingredients/VermouthDry.png" />
-		<Ingredient id="VermouthRed" description="Vermouth Red" image="ingredients/VermouthRed.png" />
+		<Ingredient id="VermouthDry" description="Dry Vermouth" image="ingredients/VermouthDry.png" />
+		<Ingredient id="VermouthRed" description="Red Vermouth" image="ingredients/VermouthRed.png" />
 		<Ingredient id="Vodka" description="Vodka" image="ingredients/Vodka.png" />
+		<Ingredient id="VodkaCitron" description="Citron Vodka" image="ingredients/Vodka.png" />
 		<Ingredient id="VodkaStrawberry" description="Vodka Strawberry" image="ingredients/VodkaStrawberry.png" />
 		<Ingredient id="Water" description="Water" image="ingredients/Water.png" />
 		<Ingredient id="Whisky" description="Whisky" image="ingredients/Whisky.png" />
@@ -165,7 +168,7 @@
 			<Ingredient id="Lemon" quantity="2" />
 		</Cocktail>
 		<Cocktail id="Casino" description="Casino" classification="AllDay" glass="Cocktail" alcoholicLevel="Medium">
-			<Info technique="Shake &amp; Strain" garnish="Lemon peel &amp; Cherry"></Info>
+			<Info technique="Shake &amp; Strain" garnish="Lemon twist &amp; Cherry"></Info>
 			<Ingredient id="OldTomGin" quantity="4" />
 			<Ingredient id="Maraschino" quantity="1" />
 			<Ingredient id="OrangeBitter" quantity="1" />
@@ -181,7 +184,7 @@
 		<Cocktail id="Daiquiri" description="Daiquiri" classification="BeforeDinner" glass="Cocktail" alcoholicLevel="High">
 			<Info technique="Shake &amp; Strain" garnish=""></Info>
 			<Ingredient id="RumWhite" quantity="4.5" />
-			<Ingredient id="Lemon" quantity="2.5" />
+			<Ingredient id="Lime" quantity="2.5" />
 			<Ingredient id="SugarSyrup" quantity="1.5" />
 		</Cocktail>
 		<Cocktail id="Derby" description="Derby" classification="AllDay" glass="Cocktail" alcoholicLevel="High">
@@ -200,7 +203,15 @@
 			<Ingredient id="Gin" quantity="4.5" />
 			<Ingredient id="Lemon" quantity="3" />
 			<Ingredient id="SugarSyrup" quantity="1.5" />
-			<Ingredient id="SodaWater" quantity="3" />
+			<Ingredient id="SodaWater" quantity="6" />
+			<Ingredient id="Angostura" quantity="1" unit="drop" />
+		</Cocktail>
+		<Cocktail id="TomCollins" description="Tom Collins" classification="LongDrink" glass="Highball" alcoholicLevel="Medium-High">
+			<Info technique="Build" garnish="Lemon slice &amp; Cherry"></Info>
+			<Ingredient id="OldTomGin" quantity="4.5" />
+			<Ingredient id="Lemon" quantity="3" />
+			<Ingredient id="SugarSyrup" quantity="1.5" />
+			<Ingredient id="SodaWater" quantity="6" />
 			<Ingredient id="Angostura" quantity="1" unit="drop" />
 		</Cocktail>
 		<Cocktail id="GinFizz" description="Gin Fizz" classification="LongDrink" glass="Highball" alcoholicLevel="Medium-High">
@@ -220,7 +231,7 @@
 			<Info technique="Shake &amp; Strain" garnish=""></Info>
 			<Ingredient id="RumWhite" quantity="6" />
 			<Ingredient id="Maraschino" quantity="1" />
-			<Ingredient id="Pineapple" quantity="7" />
+			<Ingredient id="Pineapple" quantity="6" />
 			<Ingredient id="Granitine" quantity="1" />
 		</Cocktail>
 		<Cocktail id="MonkeyGland" description="Monkey Gland" classification="AllDay" glass="Cocktail" alcoholicLevel="Medium-High">
@@ -237,11 +248,13 @@
 			<Ingredient id="VermouthRed" quantity="3" />
 		</Cocktail>
 		<Cocktail id="OldFashioned" description="Old Fashioned" classification="BeforeDinner" glass="OldFashioned" alcoholicLevel="High">
-			<Info technique="Build" garnish="Orange slice &amp; Cherry">Mettere la zolletta di zucchero nel bicchiere versare l&#39;Angostura e la Soda, pestare ed in fine aggiungere il ghiaccio e il Whisky</Info>
-			<Ingredient id="RyeWhisky" quantity="3" />
+			<Info technique="Build" garnish="Orange slice &amp; Cherry">Mettere la zolletta di zucchero nel bicchiere versare l&#39;Angostura e la Soda, pestare ed in fine aggiungere il ghiaccio e il Whisky ---
+				Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of plain water.
+Muddle until dissolve. Fill the glass with ice cubes and add whisky. </Info>
+			<Ingredient id="RyeWhisky" quantity="4.5" />
 			<Ingredient id="SugarCube" quantity="1" unit="pcs" />
 			<Ingredient id="Angostura" quantity="2" unit="drop" />
-			<Ingredient id="SodaWater" quantity="2" unit="splash" />
+			<Ingredient id="Water" quantity="2" unit="splash" />
 		</Cocktail>
 		<Cocktail id="Paradise" description="Paradise" classification="AllDay" glass="Cocktail" alcoholicLevel="High">
 			<Info technique="Shake &amp; Strain" garnish=""></Info>
@@ -252,9 +265,9 @@
 		<Cocktail id="PlantersPunch" description="Planter&#39;s Punch" classification="LongDrink" glass="Highball" alcoholicLevel="High">
 			<Info technique="Shake &amp; Strain" garnish="Pineapple &amp; Cherry"></Info>
 			<Ingredient id="RumDark" quantity="4.5" />
-			<Ingredient id="Orange" quantity="3" />
+			<Ingredient id="Orange" quantity="3.5" />
 			<Ingredient id="Pineapple" quantity="3.5" />
-			<Ingredient id="Lime" quantity="2" />
+			<Ingredient id="Lemon" quantity="2" />
 			<Ingredient id="Granitine" quantity="1" />
 			<Ingredient id="SugarSyrup" quantity="1" />
 			<Ingredient id="Angostura" quantity="3" unit="drop" />
@@ -266,7 +279,8 @@
 			<Ingredient id="EggYolk" quantity="1" />
 		</Cocktail>
 		<Cocktail id="RamosFizz" description="Ramos Fizz" classification="LongDrink" glass="Highball" alcoholicLevel="Medium">
-			<Info technique="Shake &amp; Strain" garnish="Scuotere per 2 minuti senza ghiaccio, poi aggiungerlo e schuotere nuovamente per un minuto. In fine filtrare nel bicchiere e colmare con la soda"></Info>
+			<Info technique="Shake &amp; Strain" garnish="">Scuotere per 2 minuti senza ghiaccio, poi aggiungerlo e schuotere nuovamente per un minuto. In fine filtrare nel bicchiere e colmare con la soda ---
+				Pour all ingredients (except soda) in a mixing glass, dry shake (no ice) for two minutes, add ice and hard shake for another minute. Strain into a highball glass without ice, top with soda. </Info>
 			<Ingredient id="Gin" quantity="4.5" />
 			<Ingredient id="Lime" quantity="1.5" />
 			<Ingredient id="Lemon" quantity="1.5" />
@@ -275,15 +289,16 @@
 			<Ingredient id="EggWhite" quantity="1" unit="pcs" />
 			<Ingredient id="OrangeFlowerWater" quantity="3" unit="drop" />
 			<Ingredient id="Vanilla" quantity="2" unit="drop" />
-			<Ingredient id="SodaWater" quantity="2.5" />
+			<Ingredient id="SodaWater" quantity="1" unit="fill" />
 		</Cocktail>
 		<Cocktail id="RustyNail" description="Rusty Nail" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="High">
-			<Info technique="Build" garnish="Lemon peel"></Info>
+			<Info technique="Build" garnish="Lemon twist"></Info>
 			<Ingredient id="Whisky" quantity="4.5" />
 			<Ingredient id="Drambuie" quantity="2.5" />
 		</Cocktail>
 		<Cocktail id="Sazerac" description="Sazerac" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="High">
-			<Info technique="Stir &amp; Strain" garnish="Lemon peel">Avvinare il bicchiere con l&#39;assenzio, aggiungere ghiaccio tritato e mettere da parte. Mescolare gli ingredienti restanti in un mixing glass, svutare il bicchiere aggiungere il ghiaccio e riempirlo nuovamente filtrando il contenuto del mixing glass.</Info>
+			<Info technique="Stir &amp; Strain" garnish="Lemon peel">Avvinare il bicchiere con l&#39;assenzio, aggiungere ghiaccio tritato e mettere da parte. Mescolare gli ingredienti restanti in un mixing glass, svutare il bicchiere aggiungere il ghiaccio e riempirlo nuovamente filtrando il contenuto del mixing glass. ---
+				Rinse a chilled old-fashioned glass with the absinthe, add crushed ice and set it aside. Stir the remaining ingredients over ice and set it aside. Discard the ice and any excess absinthe from the prepared glass, and strain the drink into the glass.</Info>
 			<Ingredient id="Cognac" quantity="5" />
 			<Ingredient id="Absinthe" quantity="1" />
 			<Ingredient id="SugarCube" quantity="1" unit="pcs" />
@@ -318,7 +333,7 @@
 			<Ingredient id="Lemon" quantity="2" />
 		</Cocktail>
 		<Cocktail id="Tuxedo" description="Tuxedo" classification="AllDay" glass="Cocktail" alcoholicLevel="Medium-High">
-			<Info technique="Stir &amp; Strain" garnish="Lemon peel &amp; Cherry"></Info>
+			<Info technique="Stir &amp; Strain" garnish="Lemon twist &amp; Cherry"></Info>
 			<Ingredient id="OldTomGin" quantity="3" />
 			<Ingredient id="VermouthDry" quantity="3" />
 			<Ingredient id="Maraschino" quantity="0.5" unit="spoon" />
@@ -326,14 +341,35 @@
 			<Ingredient id="OrangeBitter" quantity="3" unit="drop" />
 		</Cocktail>
 		<Cocktail id="Bellini" description="Bellini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
-			<Info technique="Build" garnish="">Puccini: Mandarino, Rossini: Fragola, Tintoretto: Melograno</Info>
+			<Info technique="Build" garnish=""></Info>
 			<Ingredient id="WineSparklingBrut" quantity="10" />
 			<Ingredient id="Peach" quantity="5" />
+		</Cocktail>
+		<Cocktail id="Puccini" description="Puccini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
+			<Info technique="Build" garnish=""></Info>
+			<Ingredient id="WineSparklingBrut" quantity="10" />
+			<Ingredient id="Mandarine" quantity="5" />
+		</Cocktail>
+		<Cocktail id="Rossini" description="Rossini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
+			<Info technique="Build" garnish=""></Info>
+			<Ingredient id="WineSparklingBrut" quantity="10" />
+			<Ingredient id="Strawberry" quantity="5" />
+		</Cocktail>
+		<Cocktail id="Tintoretto" description="Tintoretto" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
+			<Info technique="Build" garnish=""></Info>
+			<Ingredient id="WineSparklingBrut" quantity="10" />
+			<Ingredient id="Pomegranate" quantity="5" />
 		</Cocktail>
 		<Cocktail id="BlackRussian" description="Black Russian" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="Medium-High">
 			<Info technique="Build" garnish="">White Russian: 2CL FreshCream</Info>
 			<Ingredient id="Vodka" quantity="5" />
 			<Ingredient id="KahluaCoffeeLiqueur" quantity="2" />
+		</Cocktail>
+		<Cocktail id="WhiteRussian" description="White Russian" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="Medium-High">
+			<Info technique="Build" garnish="">Layer of FreshCream</Info>
+			<Ingredient id="Vodka" quantity="5" />
+			<Ingredient id="KahluaCoffeeLiqueur" quantity="2" />
+			<Ingredient id="FreshCream" quantity="2" />
 		</Cocktail>
 		<Cocktail id="BloodyMery" description="Bloody Mery" classification="LongDrink" glass="Highball" alcoholicLevel="High">
 			<Info technique="Build" garnish="Celery &amp; Lemon slice"></Info>
@@ -346,13 +382,19 @@
 			<Ingredient id="Pepper" quantity="1" unit="drop" />
 		</Cocktail>
 		<Cocktail id="Caipirinha" description="Caipirinha" classification="AllDay" glass="OldFashioned" alcoholicLevel="High">
-			<Info technique="Muddler" garnish="">Caipiroska: Vodka</Info>
+			<Info technique="Muddler" garnish=""></Info>
 			<Ingredient id="Cachaca" quantity="5" />
 			<Ingredient id="Lime" quantity="0.5" unit="pcs" />
 			<Ingredient id="Sugar" quantity="2" unit="spoon" />
 		</Cocktail>
+		<Cocktail id="Caipiroska" description="Caipiroska" classification="AllDay" glass="OldFashioned" alcoholicLevel="High">
+			<Info technique="Muddler" garnish=""></Info>
+			<Ingredient id="Vodka" quantity="5" />
+			<Ingredient id="Lime" quantity="0.5" unit="pcs" />
+			<Ingredient id="Sugar" quantity="2" unit="spoon" />
+		</Cocktail>
 		<Cocktail id="ChampagneCocktail" description="Champagne Cocktail" classification="Sparkling" glass="Flute" alcoholicLevel="Medium">
-			<Info technique="Build" garnish="Orange slice &amp; Cherry"></Info>
+			<Info technique="Build" garnish="Orange slice &amp; Cherry">Add dash of Angostura bitter onto sugar cube and drop it into champagne flute. Add cognac followed by pouring gently chilled champagne.</Info>
 			<Ingredient id="Champagne" quantity="9" />
 			<Ingredient id="Cognac" quantity="1" />
 			<Ingredient id="Angostura" quantity="2" unit="drop" />
@@ -360,16 +402,16 @@
 		</Cocktail>
 		<Cocktail id="Cosmopolitan" description="Cosmopolitan" classification="AllDay" glass="CocktailDouble" alcoholicLevel="High">
 			<Info technique="Shake &amp; Strain" garnish="Lemon slice"></Info>
-			<Ingredient id="Vodka" quantity="4" />
-			<Ingredient id="TripleSec" quantity="1.5" />
-			<Ingredient id="Lemon" quantity="1.5" />
+			<Ingredient id="VodkaCitron" quantity="4" />
+			<Ingredient id="Cointreau" quantity="1.5" />
+			<Ingredient id="Lime" quantity="1.5" />
 			<Ingredient id="Cranberry" quantity="3" />
 		</Cocktail>
 		<Cocktail id="CubaLibre" description="Cuba Libre" classification="LongDrink" glass="Highball" alcoholicLevel="Medium">
 			<Info technique="Build" garnish="Lime"></Info>
 			<Ingredient id="RumWhite" quantity="5" />
 			<Ingredient id="Cola" quantity="12" />
-			<Ingredient id="Lemon" quantity="1" />
+			<Ingredient id="Lime" quantity="1" />
 		</Cocktail>
 		<Cocktail id="French75" description="French75" classification="Sparkling" glass="Flute" alcoholicLevel="Medium">
 			<Info technique="Shake &amp; Strain" garnish=""></Info>
@@ -394,7 +436,7 @@
 			<Ingredient id="Amaretto" quantity="3.5" />
 		</Cocktail>
 		<Cocktail id="GoldenDream" description="Golden Dream" classification="AfterDinner" glass="Cocktail" alcoholicLevel="Medium">
-			<Info technique="Shake &amp; Strain" garnish="Lemon slice"></Info>
+			<Info technique="Shake &amp; Strain" garnish=""></Info>
 			<Ingredient id="Galliano" quantity="2" />
 			<Ingredient id="TripleSec" quantity="2" />
 			<Ingredient id="Orange" quantity="2" />
@@ -402,9 +444,9 @@
 		</Cocktail>
 		<Cocktail id="Grasshopper" description="Grasshopper" classification="AfterDinner" glass="Cocktail" alcoholicLevel="Medium">
 			<Info technique="Shake &amp; Strain" garnish=""></Info>
-			<Ingredient id="CremeDeMentheGreen" quantity="2" />
-			<Ingredient id="CremeDeCacaoWhite" quantity="2" />
-			<Ingredient id="FreshCream" quantity="2" />
+			<Ingredient id="CremeDeMentheGreen" quantity="3" />
+			<Ingredient id="CremeDeCacaoWhite" quantity="3" />
+			<Ingredient id="FreshCream" quantity="3" />
 		</Cocktail>
 		<Cocktail id="HarveyWallbanger" description="Harvey Wallbanger" classification="AllDay" glass="Highball" alcoholicLevel="Medium-High">
 			<Info technique="Build" garnish="Orange slice &amp; Cherry">Layer of Galliano</Info>
@@ -420,13 +462,13 @@
 			<Ingredient id="Lime" quantity="1.5" />
 		</Cocktail>
 		<Cocktail id="HosresNeck" description="Hosre&#39;s Neck" classification="LongDrink" glass="Collins" alcoholicLevel="Medium">
-			<Info technique="Build" garnish="Lemon peel long"></Info>
-			<Ingredient id="Cognac" quantity="4" />
+			<Info technique="Build" garnish="Lemon peel spiral"></Info>
+			<Ingredient id="Brandy" quantity="4" />
 			<Ingredient id="GingerAle" quantity="12" />
 			<Ingredient id="Angostura" quantity="1" unit="drop" />
 		</Cocktail>
 		<Cocktail id="IrishCoffee" description="Irish Coffee" classification="HotDrink" glass="Tankard" alcoholicLevel="High">
-			<Info technique="Build" garnish="">Layer of Fresh Cream</Info>
+			<Info technique="Build" garnish="Layer of Fresh Cream">Warm the Irish whiskey over a burner. Pour into the glass (for hot drink) hot coffee, and add a teaspoon of sugar.</Info>
 			<Ingredient id="IrishWhisky" quantity="4" />
 			<Ingredient id="Coffee" quantity="9" />
 			<Ingredient id="FreshCream" quantity="3" />
@@ -454,7 +496,7 @@
 			<Ingredient id="Cola" quantity="1" unit="splash" />
 		</Cocktail>
 		<Cocktail id="MaiTai" description="Mai Tai" classification="LongDrink" glass="Highball" alcoholicLevel="High">
-			<Info technique="Shake &amp; Strain" garnish="Lemon peel, Pineapple &amp; Mint">Layer of Dark Rum</Info>
+			<Info technique="Shake &amp; Strain" garnish="Lime peel, Pineapple &amp; Mint"></Info>
 			<Ingredient id="RumWhite" quantity="4" />
 			<Ingredient id="RumDark" quantity="2" />
 			<Ingredient id="OrangeCuracao" quantity="1.5" />
@@ -462,25 +504,27 @@
 			<Ingredient id="Lime" quantity="1" />
 		</Cocktail>
 		<Cocktail id="Margarita" description="Margarita" classification="AllDay" glass="Margarita" alcoholicLevel="High">
-			<Info technique="Shake &amp; Strain" garnish="Salt"></Info>
+			<Info technique="Shake &amp; Strain" garnish="Rimmed with Salt"></Info>
 			<Ingredient id="Tequila" quantity="3.5" />
-			<Ingredient id="TripleSec" quantity="2" />
-			<Ingredient id="Lemon" quantity="1.5" />
+			<Ingredient id="Cointreau" quantity="2" />
+			<Ingredient id="Lime" quantity="1.5" />
 		</Cocktail>
-		<Cocktail id="Mimosa" description="Mimosa" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
-			<Info technique="Build" garnish="Orange twist"></Info>
+		<Cocktail id="Mimosa" description="Mimosa" classification="Sparkling" glass="Flute" alcoholicLevel="Medium">
+			<Info technique="Build" garnish="Orange twist">Buck&#39;s Fizz and a Mimosa are the same drink.</Info>
 			<Ingredient id="Champagne" quantity="7.5" />
 			<Ingredient id="Orange" quantity="7.5" />
 		</Cocktail>
 		<Cocktail id="MintJulep" description="Mint Julep" classification="LongDrink" glass="Highball" alcoholicLevel="High">
-			<Info technique="Muddler" garnish="Mint"></Info>
+			<Info technique="Muddler" garnish="Mint">In a highball glass gently muddle the mint, sugar and water.
+Fill the glass with cracked ice, add Bourbon and stir well until the glass is frost.</Info>
 			<Ingredient id="Whisky" quantity="6" />
 			<Ingredient id="Mint" quantity="4" unit="pcs" />
 			<Ingredient id="Sugar" quantity="1" unit="spoon" />
 			<Ingredient id="Water" quantity="2" unit="spoon" />
 		</Cocktail>
 		<Cocktail id="Mojito" description="Mojito" classification="LongDrink" glass="Highball" alcoholicLevel="Medium-High">
-			<Info technique="Muddler" garnish="Mint &amp; Lime slice"></Info>
+			<Info technique="Muddler" garnish="Mint &amp; Lemon slice">Muddle mint springs with sugar and lime juice.
+Add splash of soda water and fill glass with cracked ice. Pour rum and top with soda water.</Info>
 			<Ingredient id="RumWhite" quantity="4" />
 			<Ingredient id="Lime" quantity="3" />
 			<Ingredient id="Mint" quantity="6" unit="pcs" />
@@ -489,7 +533,7 @@
 		</Cocktail>
 		<Cocktail id="MoscowMule" description="Moscow Mule" classification="LongDrink" glass="Highball" alcoholicLevel="Medium">
 			<Info technique="Build" garnish="Lime slice"></Info>
-			<Ingredient id="Vodka" quantity="4" />
+			<Ingredient id="Vodka" quantity="4.5" />
 			<Ingredient id="GingerBeer" quantity="12" />
 			<Ingredient id="Lime" quantity="0.5" />
 		</Cocktail>
@@ -521,11 +565,11 @@
 		<Cocktail id="SingaporeSling" description="Singapore Sling" classification="LongDrink" glass="Highball" alcoholicLevel="High">
 			<Info technique="Shake &amp; Strain" garnish="Pineapple &amp; Cherry"></Info>
 			<Ingredient id="Gin" quantity="3" />
-			<Ingredient id="CherryBrandy" quantity="1.5" />
-			<Ingredient id="TripleSec" quantity="0.75" />
+			<Ingredient id="CherryLiqueur" quantity="1.5" />
+			<Ingredient id="Cointreau" quantity="0.75" />
 			<Ingredient id="Benedictine" quantity="0.75" />
 			<Ingredient id="Pineapple" quantity="12" />
-			<Ingredient id="Lemon" quantity="1.5" />
+			<Ingredient id="Lime" quantity="1.5" />
 			<Ingredient id="Granitine" quantity="1" />
 			<Ingredient id="Angostura" quantity="1" unit="drop"/>
 		</Cocktail>
@@ -544,14 +588,15 @@
 			<Ingredient id="Prosecco" quantity="1" unit="fill" />
 		</Cocktail>
 		<Cocktail id="Bramble" description="Bramble" classification="AllDay" glass="OldFashioned" alcoholicLevel="Medium-High">
-			<Info technique="Build" garnish="Limon slice &amp; Blackberry"></Info>
+			<Info technique="Build" garnish="Limon slice &amp; Blackberry">Build over crushed ice, in a rock glass.
+Stir, then pour the blackberry liqueur over the top of the drink in a circular fashion.</Info>
 			<Ingredient id="Gin" quantity="4" />
 			<Ingredient id="Lemon" quantity="1.5" />
 			<Ingredient id="SugarSyrup" quantity="1" />
 			<Ingredient id="BlackberryLiqueur" quantity="1.5" />
 		</Cocktail>
-		<Cocktail id="B52" description="B52" classification="AllDay" glass="Shot" alcoholicLevel="High">
-			<Info technique="Layer" garnish=""></Info>
+		<Cocktail id="B52" description="B52" classification="AfterDinner" glass="Shot" alcoholicLevel="High">
+			<Info technique="Layer" garnish="">Flame the Grand Marnier, serve while the flame is still on, accompanied with a straw on side plate.</Info>
 			<Ingredient id="KahluaCoffeeLiqueur" quantity="2" />
 			<Ingredient id="IrishCream" quantity="2" />
 			<Ingredient id="GrandMarnier" quantity="2" />
@@ -582,7 +627,7 @@
 		</Cocktail>
 		<Cocktail id="LemonDropMartini" description="Lemon Drop Martini" classification="AllDay" glass="Cocktail" alcoholicLevel="High">
 			<Info technique="Shake &amp; Strain" garnish="Lemon slice">Sugar edge</Info>
-			<Ingredient id="Vodka" quantity="2.5" />
+			<Ingredient id="VodkaCitron" quantity="2.5" />
 			<Ingredient id="TripleSec" quantity="2" />
 			<Ingredient id="Lemon" quantity="1.5" />
 		</Cocktail>
@@ -590,10 +635,10 @@
 			<Info technique="Shake &amp; Strain" garnish=""></Info>
 			<Ingredient id="Vodka" quantity="3" />
 			<Ingredient id="TripleSec" quantity="3" />
-			<Ingredient id="Lemon" quantity="3" />
+			<Ingredient id="Lime" quantity="3" />
 		</Cocktail>
 		<Cocktail id="PiscoSour" description="Pisco Sour" classification="AllDay" glass="Flute" alcoholicLevel="Medium-High">
-			<Info technique="Shake &amp; Strain" garnish="">Angostura on top</Info>
+			<Info technique="Shake &amp; Strain" garnish="Angostura on top"></Info>
 			<Ingredient id="Pisco" quantity="4.5" />
 			<Ingredient id="Lemon" quantity="3" />
 			<Ingredient id="SugarSyrup" quantity="2" />
@@ -615,13 +660,13 @@
 			<Ingredient id="SodaWater" quantity="1" unit="splash"/>
 		</Cocktail>
 		<Cocktail id="TommisMargarita" description="Tommi&#39;s Margarita" classification="AllDay" glass="Margarita" alcoholicLevel="Medium-High">
-			<Info technique="Shake &amp; Strain" garnish="Salt"></Info>
+			<Info technique="Shake &amp; Strain" garnish="Rimmed with Salt"></Info>
 			<Ingredient id="Tequila" quantity="4.5" />
 			<Ingredient id="Lime" quantity="1.5" />
 			<Ingredient id="Agave" quantity="2" unit="spoon" />
 		</Cocktail>
 		<Cocktail id="Vampiro" description="Vampiro" classification="LongDrink" glass="Highball" alcoholicLevel="High">
-			<Info technique="Build" garnish="Lime slice &amp; Chili"></Info>
+			<Info technique="Shake &amp; Strain" garnish="Lime slice &amp; Chili"></Info>
 			<Ingredient id="Tequila" quantity="5" />
 			<Ingredient id="Tomato" quantity="7" />
 			<Ingredient id="Orange" quantity="3" />
@@ -633,13 +678,13 @@
 			<Ingredient id="Salt" quantity="1" unit="drop" />
 		</Cocktail>
 		<Cocktail id="Vesper" description="Vesper" classification="BeforeDinner" glass="Cocktail" alcoholicLevel="Medium-High">
-			<Info technique="Stir &amp; Strain" garnish="Lemon twist"></Info>
+			<Info technique="Shake &amp; Strain" garnish="Lemon twist"></Info>
 			<Ingredient id="Gin" quantity="6" />
 			<Ingredient id="Vodka" quantity="1.5" />
 			<Ingredient id="LilletBlonde" quantity="0.75" />
 		</Cocktail>
 		<Cocktail id="YellowBird" description="Yellow Bird" classification="AllDay" glass="Cocktail" alcoholicLevel="Medium-High">
-			<Info technique="Shake &amp; Strain" garnish="Lemon twist"></Info>
+			<Info technique="Shake &amp; Strain" garnish=""></Info>
 			<Ingredient id="RumWhite" quantity="3" />
 			<Ingredient id="Galliano" quantity="1.5" />
 			<Ingredient id="TripleSec" quantity="1.5" />
