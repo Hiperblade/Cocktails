@@ -9,6 +9,8 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 	var _alcoholicLevel = alcoholicLevel;
 	var _iba = iba;
 
+	var _baseCocktail = null;
+
 	var _info = "";
 	var _technique = "";
 	var _garnish = "";
@@ -26,6 +28,10 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 	this.AlcoholicLevel = function() { return _alcoholicLevel; };
 	this.Iba = function() { return _iba; };
 
+	this.setBaseCocktail = function(baseCocktail) { _baseCocktail = baseCocktail; };
+	this.getBaseCocktail = function() { return _baseCocktail; };
+	this.hasVariant = function() {return (_baseCocktail != null && _baseCocktail != ""); };
+
 	this.setInfo = function (technique, garnish, value) { _technique = technique; _garnish = garnish; _info = value; };
 	this.Technique = function () { return _technique; };
 	this.Garnish = function () { return _garnish; };
@@ -37,35 +43,6 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 
 function Book()
 {
-	var IMAGE_DIRECTORY = "img";
-	var BASE_DIRECTORY = "cocktails";
-	var IBA_FILE = BASE_DIRECTORY + "/iba.xml";
-	var CUSTOM_FILE = BASE_DIRECTORY + "/custom.xml";
-
-	var UNIT_MEASURE = { Cl: "", Fill: "fill", Pcs: "pcs", Splash: "spash", Spoon: "spoon", Drop: "drop" };
-
-	var CLASSIFICATION = [ "Shot", "LongDrink", "AfterDinner", "BeforeDinner", "AllDay", "Refreshing", "Sparkling", "HotDrink" ];
-	var GLASSES = { };
-	var INGREDIENTS = { };
-
-	var TECHNIQUES = [ "Build", "Layer", "Mix &amp; Pour", "Muddler", "Shake &amp; Strain", "Stir &amp; Strain" ];
-
-	var ALCOHOLIC_LEVELS = [ "None", "Low", "Medium-Low", "Medium", "Medium-High", "High" ];
-
-	var _cocktails = [];
-	var _currentCocktail = null;
-
-	var CONVERSION_TYPE = { CL: "CL", OZ: "OZ", OZQ: "OZQ" };
-	var _conversionType = CONVERSION_TYPE.OZ;
-
-	var _listFilter = null;
-	var _listClassificationFilter = null;
-	var _lastScrollPosition = 0;
-
-	var _menuVisible = false;
-	var _showingSettings = false;
-	var _showingEditor = false;
-
 	var TAG = {
 		Glass: "Glass",
 		Ingredient: "Ingredient",
@@ -84,12 +61,75 @@ function Book()
 		UnitMeasure: "unit"
 	};
 
-	var _setImageDirectory = function(dir)
+	var IMAGE_DIRECTORY = "img";
+	var BASE_DIRECTORY = "cocktails";
+	var IBA_FILE = BASE_DIRECTORY + "/iba.xml";
+	var CUSTOM_FILE = BASE_DIRECTORY + "/custom.xml";
+
+	var UNIT_MEASURE = { Cl: "", Fill: "fill", Pcs: "pcs", Splash: "spash", Spoon: "spoon", Drop: "drop" };
+	var CLASSIFICATION = [ "Shot", "LongDrink", "AfterDinner", "BeforeDinner", "AllDay", "Refreshing", "Sparkling", "HotDrink" ];
+	var TECHNIQUES = [ "Build", "Layer", "Mix &amp; Pour", "Muddler", "Shake &amp; Strain", "Stir &amp; Strain" ];
+	var ALCOHOLIC_LEVELS = [ "None", "Low", "Medium-Low", "Medium", "Medium-High", "High" ];
+
+	var GLASSES = { };
+	var INGREDIENTS = { };
+	var _cocktails = [];
+	var _variants = { };
+	var _currentCocktail = null;
+
+	var CONVERSION_TYPE = { CL: "CL", OZ: "OZ", OZQ: "OZQ" };
+	var _conversionType = CONVERSION_TYPE.OZ;
+
+	var _listFilter = null;
+	var _listClassificationFilter = null;
+	var _lastScrollPosition = 0;
+
+	var _menuVisible = false;
+	var _showingSettings = false;
+	var _showingEditor = false;
+
+	var _addVariantOf = function(baseCocktail, variant)
 	{
-		IMAGE_DIRECTORY = dir;
+		if(!_variants[baseCocktail])
+		{
+			_variants[baseCocktail] = [];
+		}
+
+		for(var i = 0; i < _variants[baseCocktail].length; i++)
+		{
+			if(_getCocktail(variant).Description().toLowerCase() < _getCocktail(_variants[baseCocktail][i]).Description().toLowerCase())
+			{
+				__variants[baseCocktail].splice(i, 0, variant);
+				return;
+			}
+		}
+		_variants[baseCocktail].push(variant);
 	}
 
-	this.setImageDirectory = _setImageDirectory;
+	var _getNextVariantOf = function(baseCocktail, cocktail)
+	{
+		if(baseCocktail == null || baseCocktail == "")
+		{
+			if(!_variants[cocktail])
+			{
+				return null;
+			}
+			else
+			{
+				return _variants[cocktail][0];
+			}
+		}
+
+		var index = _variants[baseCocktail].indexOf(cocktail);
+		if(index < _variants[baseCocktail].length - 1)
+		{
+			return _variants[baseCocktail][index + 1];
+		}
+		else
+		{
+			return baseCocktail;
+		}
+	}
 
 	var _getIngredientDescription = function(id)
 	{
@@ -104,9 +144,9 @@ function Book()
 	{
 		if(INGREDIENTS[id])
 		{
-			return INGREDIENTS[id].Image;
+			return "ingredients/" + INGREDIENTS[id].Image;
 		}
-		return "generic.jpg";
+		return "ingredients/generic.png";
 	}
 
 	var _getGlassDescription = function(id)
@@ -122,9 +162,9 @@ function Book()
 	{
 		if(GLASSES[id])
 		{
-			return GLASSES[id].Image;
+			return "glass/" + GLASSES[id].Image;
 		}
-		return "generic.svg";
+		return "glass/generic.svg";
 	}
 
 	var _start = function()
@@ -142,6 +182,14 @@ function Book()
 	{
 		_loadData(IBA_FILE, true, function(){
 			_loadData(CUSTOM_FILE, false, function(){
+				for(var i = 0; i < _cocktails.length; i++)
+				{
+					if(_cocktails[i].hasVariant())
+					{
+						_addVariantOf(_cocktails[i].getBaseCocktail(), _cocktails[i].Id());
+					}
+				}
+
 				_show();
 			});
 		});
@@ -158,6 +206,18 @@ function Book()
 			}
 		}
 		_cocktails.push(value);
+	}
+
+	var _getCocktail = function(cocktailId)
+	{
+		for(var i = 0; i < _cocktails.length; i++)
+		{
+			if(_cocktails[i].Id() == cocktailId)
+			{
+				return _cocktails[i];
+			}
+		}
+		return null;
 	}
 
 	var _loadDataFromXml = function(fileContent, iba)
@@ -222,6 +282,13 @@ function Book()
 					if(nodesParent.childNodes[i].tagName == TAG.Cocktail)
 					{
 						tmp = new Cocktail(nodesParent.childNodes[i].getAttribute(TAG.Id), nodesParent.childNodes[i].getAttribute(TAG.Description), nodesParent.childNodes[i].getAttribute(TAG.Classification), nodesParent.childNodes[i].getAttribute(TAG.GlassType), nodesParent.childNodes[i].getAttribute(TAG.AlcoholicLevel), iba);
+
+						var baseCocktail = nodesParent.childNodes[i].getAttribute("variantOf");
+						if(baseCocktail)
+						{
+							tmp.setBaseCocktail(baseCocktail);
+						}
+
 						for(var j = 0; j < nodesParent.childNodes[i].childNodes.length; j++)
 						{
 							if(nodesParent.childNodes[i].childNodes[j].tagName == TAG.Info)
@@ -375,6 +442,10 @@ function Book()
 				{
 					text += '<div class="Iba"> (IBA)</div>';
 				}
+				if(cocktailsList[i].hasVariant())
+				{
+					text += '<div class="Iba"> (*)</div>';
+				}
 				text +=  '</div>';
 				text +=  '<div class="ElementInfo">' + cocktailsList[i].Classification() + '</div>';
 				text += '</div>';
@@ -518,6 +589,10 @@ function Book()
 			{
 				text += '<div class="Iba"> (IBA)</div>';
 			}
+			if(_currentCocktail.hasVariant())
+			{
+				text += '<div class="Iba"> (*)</div>';
+			}
 			text +=  '</div>';
 			text +=  '<div><div class="Label">Classification: </div><div class="Value">' + _currentCocktail.Classification() + '</div></div>';
 			text +=  '<div><div class="Label">AlcoholicLevel: </div><div class="Value">' + _currentCocktail.AlcoholicLevel() + '</div></div>';
@@ -530,6 +605,13 @@ function Book()
 			text += '<div class="CocktailInfo">';
 			text += '<div><div class="Label">Technique: </div><div class="Value">' + _currentCocktail.Technique() + '</div></div>';
 			text += '<div><div class="Label">Garnish: </div><div class="Value">' + _currentCocktail.Garnish() + '</div></div>';
+			text += '</div>';
+			var nextVariant = _getNextVariantOf(_currentCocktail.getBaseCocktail(), _currentCocktail.Id());
+			if(nextVariant)
+			{
+				text += '<div class="EditorButton" onClick="Book.setCurrentCocktail(\'' + nextVariant + '\')"><img class="EditorIngredientImage" src="img/edit.svg"><img>' + _getCocktail(nextVariant).Description() + '</div>';
+			}
+			text += '<div class="CocktailInfo">';
 			text += '<div>' + _currentCocktail.Info() + '</div>';
 			text += '</div>';
 
@@ -603,8 +685,10 @@ function Book()
 		text += '</select></div>';
 
 		text += '<div class="Credits"><div class="applicationTitle">Credits</div>';
-		text += '<img class="CreditsImage" src="img/credits.jpg" />';
-		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div>';
+		text += '<img class="CreditsImage" src="img/OpenSource.svg" />';
+		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div>';
+		text += '<img class="CreditsPhoto" src="img/credits.jpg" />';
+		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div></div>';
 		text += '</div>';
 
 		text += '</div>';
@@ -982,32 +1066,33 @@ function Book()
 	{
 		if(_showingSettings == true)
 		{
-			return [ { Command: "SAVE", Image: "img/save.svg", Text: "Save" } ];
+			return [ { Command: "SAVE", Image: "img/save.svg", Text: "Save" },
+				 { Command: "CANCEL", Image: "img/cancel.svg", Text: "Cancel" } ];
 		}
 		else if(_showingEditor == true)
 		{
 			return [ { Command: "SAVE", Image: "img/save.svg", Text: "Save" },
-			     { Command: "CANCEL", Image: "img/cancel.svg", Text: "Cancel" } ];
+				 { Command: "CANCEL", Image: "img/cancel.svg", Text: "Cancel" } ];
 		}
 		else if(_currentCocktail != null)
 		{
 			if(_currentCocktail.Iba() == true)
 			{
 				return [ { Command: "SETTINGS", Image: "img/settings.svg", Text: "Settings" },
-				     { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" } ];
+					 { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" } ];
 			}
 			else
 			{
 				return [ { Command: "SETTINGS", Image: "img/settings.svg", Text: "Settings" },
-				     { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" },
-				     { Command: "EDIT", Image: "img/edit.svg", Text: "Edit Cocktail" },
-				     { Command: "DELETE", Image: "img/delete.svg", Text: "Delete Cocktail" } ];
+					 { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" },
+					 { Command: "EDIT", Image: "img/edit.svg", Text: "Edit Cocktail" },
+					 { Command: "DELETE", Image: "img/delete.svg", Text: "Delete Cocktail" } ];
 			}
 		}
 		else
 		{
 			return [ { Command: "SETTINGS", Image: "img/settings.svg", Text: "Settings" },
-			     { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" } ];
+				 { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" } ];
 		}
 	};
 
@@ -1084,11 +1169,15 @@ function Book()
 				_show();
 				break;
 			case "CANCEL":
-				if(_currentCocktail.Id() == "")
+				if(_showingSettings == true)
+				{
+					_showingSettings = false;
+				}
+				else if(_currentCocktail.Id() == "")
 				{
 					_currentCocktail = null;
+					_showingEditor = false;
 				}
-				_showingEditor = false;
 				_show();
 				break;
 		}
@@ -1128,6 +1217,12 @@ function Book()
 		_show();
 	}
 
+	var _setImageDirectory = function(dir)
+	{
+		IMAGE_DIRECTORY = dir;
+	}
+
+	this.setImageDirectory = _setImageDirectory;
 	this.setUnitMeasure = function(value) { _conversionType = value; };
 	this.setCurrentCocktail  = _setCurrentCocktail;
 	this.show = _show;

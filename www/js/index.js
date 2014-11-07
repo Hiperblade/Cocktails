@@ -29,7 +29,7 @@ function CordovaAppConstructor()
 		{
 			// esco dall'applicazione
 			navigator.app.exitApp();
-        	}
+			}
 	};
 
 	var _onOrientationChange = function()

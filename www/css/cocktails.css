@@ -102,13 +102,17 @@
 	margin-right: 1.5em;
 }
 
-.CreditsImage
+.CreditsImage, .CreditsPhoto
 {
 	display: inline-block;
 	height: 3em;
-	border: 1px solid;
 	border-color: darkgrey;
 	padding: 2px;
+}
+
+.CreditsPhoto
+{
+	border: 1px solid;
 }
 
 .CreditsInfo
@@ -116,6 +120,7 @@
 	display: inline-block;
 	font-size: 0.8em;
 	margin-left: 0.5em;
+	vertical-align: 1em;
 }
 
 /* --------------------- */
@@ -240,7 +245,7 @@
 {
 	position: absolute;
 	top: 1.8em;
-	right: 0.5em;
+	right: 2%;
 	text-align: center;
 }
 
@@ -311,11 +316,11 @@
 {
 	text-align: left;
 	font-weight: bold;
-
+	font-size: 1.2em;
 	position: absolute;
 	top: 0;
-	left: 5em;
-	right: 1em;
+	left: 4.17em;
+	/*right: 1em;*/
 }
 
 .IngredientQuantity
@@ -325,7 +330,7 @@
 
 	position: absolute;
 	left: 1.25em;
-	right: 0.5em;
+	right: 2%;
 	bottom: 0;
 }
 
@@ -375,8 +380,8 @@
 	padding-top: 0.2em;
 	text-align: center;
 	margin-top: 0.2em;
-	margin-left: 30%;
-	margin-right: 30%;
+	margin-left: 60%;
+	margin-right: 0%;
 	width: 40%;
 	background-color: darkgray;
 }

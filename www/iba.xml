@@ -1,133 +1,134 @@
 <CocktailsData version="1">
 	<Glasses>
-		<Glass id="Cocktail" description="Cocktail" image="glass/Cocktail.svg" />
-		<Glass id="CocktailDouble" description="Cocktail Double" image="glass/Cocktail.svg" />
-		<Glass id="Collins" description="Collins" image="glass/Collins.svg" />
-		<Glass id="Flute" description="Flute" image="glass/Flute.svg" />
-		<Glass id="Goblet" description="Goblet" image="glass/Goblet.svg" />
-		<Glass id="Highball" description="Highball" image="glass/Highball.svg" />
-		<Glass id="Margarita" description="Margarita" image="glass/Margarita.svg" />
-		<Glass id="OldFashioned" description="OldFashioned" image="glass/OldFashioned.svg" />
-		<Glass id="Pilsner" description="Pilsner" image="glass/Pilsner.svg" />
-		<Glass id="Pint" description="Pint" image="glass/Pint.svg" />
-		<Glass id="Shot" description="Shot" image="glass/Shot.svg" />
-		<Glass id="Snifter" description="Snifter" image="glass/Snifter.svg" />
-		<Glass id="Tankard" description="Tankard" image="glass/Tankard.svg" />
-		<Glass id="Wine" description="Wine" image="glass/Wine.svg" />
+		<Glass id="Cocktail" description="Cocktail" image="Cocktail.svg" />
+		<Glass id="CocktailDouble" description="Cocktail Double" image="Cocktail.svg" />
+		<Glass id="Collins" description="Collins" image="Collins.svg" />
+		<Glass id="Flute" description="Flute" image="Flute.svg" />
+		<Glass id="Goblet" description="Goblet" image="Goblet.svg" />
+		<Glass id="Highball" description="Highball" image="Highball.svg" />
+		<Glass id="Margarita" description="Margarita" image="Margarita.svg" />
+		<Glass id="OldFashioned" description="OldFashioned" image="OldFashioned.svg" />
+		<Glass id="Pilsner" description="Pilsner" image="Pilsner.svg" />
+		<Glass id="Pint" description="Pint" image="Pint.svg" />
+		<Glass id="Shot" description="Shot" image="Shot.svg" />
+		<Glass id="Snifter" description="Snifter" image="Snifter.svg" />
+		<Glass id="Tankard" description="Tankard" image="Tankard.svg" />
+		<Glass id="Wine" description="Wine" image="Wine.svg" />
 	</Glasses>
 	<Ingredients>
-		<Ingredient id="Absinthe" description="Absinthe" image="ingredients/Absinthe.png" />
-		<Ingredient id="Agave" description="Agave" image="ingredients/Agave.png" />
-		<Ingredient id="Amaretto" description="Amaretto" image="ingredients/Amaretto.png" />
-		<Ingredient id="Angostura" description="Angostura" image="ingredients/Angostura.png" />
-		<Ingredient id="Aperol" description="Aperol" image="ingredients/Aperol.png" />
-		<Ingredient id="ApricotBrandy" description="Apricot Brandy" image="ingredients/ApricotBrandy.png" />
-		<Ingredient id="Banana" description="Banana" image="ingredients/Banana.png" />
-		<Ingredient id="Benedictine" description="Benedictine" image="ingredients/Benedictine.png" />
-		<Ingredient id="Blackberry" description="Blackberry" image="ingredients/Blackberry.png" />
-		<Ingredient id="BlackberryLiqueur" description="Blackberry Liqueur" image="ingredients/Blackberry.png" />
-		<Ingredient id="BlueCuracao" description="Blue Curacao" image="ingredients/BlueCuracao.png" />
-		<Ingredient id="Brandy" description="Brandy" image="ingredients/Brandy.png" />
-		<Ingredient id="Cacao" description="Cacao" image="ingredients/Cacao.png" />
-		<Ingredient id="Cachaca" description="Cachaca" image="ingredients/Cachaca.png" />
-		<Ingredient id="Calvados" description="Calvados" image="ingredients/Calvados.png" />
-		<Ingredient id="CampariBitter" description="Campari Bitter" image="ingredients/CampariBitter.png" />
-		<Ingredient id="CelerySalt" description="Celery Salt" image="ingredients/Salt.png" />
-		<Ingredient id="Champagne" description="Champagne" image="ingredients/Champagne.png" />
-		<Ingredient id="Cherry" description="Cherry" image="ingredients/Cherry.png" />
-		<Ingredient id="CherryLiqueur" description="Cherry Liqueur" image="ingredients/CherryLiqueur.png" />
-		<Ingredient id="Coconut" description="Coconut" image="ingredients/Coconut.png" />
-		<Ingredient id="CoconutMilk" description="Coconut Milk" image="ingredients/Coconut.png" />
-		<Ingredient id="Coffee" description="Coffee" image="ingredients/Coffee.png" />
-		<Ingredient id="Cognac" description="Cognac" image="ingredients/Cognac.png" />
-		<Ingredient id="Cointreau" description="Cointreau" image="ingredients/Cointreau.png" />
-		<Ingredient id="Cola" description="Cola" image="ingredients/Cola.png" />
-		<Ingredient id="Cranberry" description="Cranberry" image="ingredients/Cranberry.png" />
-		<Ingredient id="CremeDeCacaoDark" description="Creme De Cacao (Dark)" image="ingredients/CremeDeCacaoDark.png" />
-		<Ingredient id="CremeDeCacaoWhite" description="Creme De Cacao (White)" image="ingredients/CremeDeCacaoWhite.png" />
-		<Ingredient id="CremeDeCassis" description="Creme De Cassis" image="ingredients/CremeDeCassis.png" />
-		<Ingredient id="CremeDeMentheGreen" description="Creme De Menthe (Green)" image="ingredients/CremeDeMentheGreen.png" />
-		<Ingredient id="CremeDeMentheWhite" description="Creme De Menthe (White)" image="ingredients/CremeDeMentheWhite.png" />
-		<Ingredient id="Cynar" description="Cynar" image="ingredients/Cynar.png" />
-		<Ingredient id="Drambuie" description="Drambuie" image="ingredients/Drambuie.png" />
-		<Ingredient id="EggWhite" description="Egg White" image="ingredients/Egg.png" />
-		<Ingredient id="EggYolk" description="Egg Yolk" image="ingredients/Egg.png" />
-		<Ingredient id="FernetBranca" description="Fernet Branca" image="ingredients/FernetBranca.png" />
-		<Ingredient id="FreshCream" description="Fresh Cream" image="ingredients/FreshCream.png" />
-		<Ingredient id="Galliano" description="Galliano" image="ingredients/Galliano.png" />
-		<Ingredient id="Gin" description="Gin" image="ingredients/Gin.png" />
-		<Ingredient id="GingerAle" description="Ginger Ale" image="ingredients/GingerAle.png" />
-		<Ingredient id="GingerBeer" description="Ginger Beer" image="ingredients/GingerBeer.png" />
-		<Ingredient id="GrandMarnier" description="Grand Marnier" image="ingredients/GrandMarnier.png" />
-		<Ingredient id="Granitine" description="Granitine" image="ingredients/Granitine.png" />
-		<Ingredient id="Grapefruit" description="Grapefruit" image="ingredients/Grapefruit.png" />
-		<Ingredient id="Honey" description="Honey" image="ingredients/Honey.png" />
-		<Ingredient id="IrishCream" description="Irish Cream" image="ingredients/IrishCream.png" />
-		<Ingredient id="IrishWhisky" description="Irish Whisky" image="ingredients/IrishWhisky.png" />
-		<Ingredient id="KahluaCoffeeLiqueur" description="Kahlua Coffee Liqueur" image="ingredients/KahluaCoffeeLiqueur.png" />
-		<Ingredient id="Kirsch" description="Kirsch" image="ingredients/Kirsch.png" />
-		<Ingredient id="Lemon" description="Lemon" image="ingredients/Lemon.png" />
-		<Ingredient id="LemonSoda" description="Lemon Soda" image="ingredients/LemonSoda.png" />
-		<Ingredient id="LilletBlonde" description="Lillet Blonde" image="ingredients/LilletBlonde.png" />
-		<Ingredient id="Lime" description="Lime" image="ingredients/Lime.png" />
-		<Ingredient id="Mandarine" description="Mandarine" image="ingredients/Mandarine.png" />
-		<Ingredient id="Maraschino" description="Maraschino" image="ingredients/Maraschino.png" />
-		<Ingredient id="Midori" description="Midori" image="ingredients/Midori.png" />
-		<Ingredient id="Mint" description="Mint" image="ingredients/Mint.png" />
-		<Ingredient id="Nutmeg" description="Nutmeg" image="ingredients/Nutmeg.png" />
-		<Ingredient id="OldTomGin" description="Old Tom Gin" image="ingredients/OldTomGin.png" />
-		<Ingredient id="Olive" description="Olive" image="ingredients/Olive.png" />
-		<Ingredient id="OliveJuice" description="Olive Juice" image="ingredients/Olive.png" />
-		<Ingredient id="Onion" description="Onion" image="ingredients/Onion.png" />
-		<Ingredient id="OnionRing" description="Onion Ring" image="ingredients/Onion.png" />
-		<Ingredient id="Orange" description="Orange" image="ingredients/Orange.png" />
-		<Ingredient id="OrangeBitter" description="Orange Bitter" image="ingredients/OrangeBitter.png" />
-		<Ingredient id="OrangeCuracao" description="Orange Curacao" image="ingredients/OrangeCuracao.png" />
-		<Ingredient id="OrangeFlowerWater" description="Orange Flower Water" image="ingredients/OrangeFlowerWater.png" />
-		<Ingredient id="Orgeat" description="Orgeat" image="ingredients/Orgeat.png" />
-		<Ingredient id="Peach" description="Peach" image="ingredients/Peach.png" />
-		<Ingredient id="PeachBitter" description="Peach Bitter" image="ingredients/PeachBitter.png" />
-		<Ingredient id="PeachLiqueur" description="Peach Liqueur" image="ingredients/Peach.png" />
-		<Ingredient id="Pepper" description="Pepper" image="ingredients/Pepper.png" />
-		<Ingredient id="PeychaudsBitter" description="Peychaud&#39;s Bitter" image="ingredients/PeychaudsBitter.png" />
-		<Ingredient id="Pineapple" description="Pineapple" image="ingredients/Pineapple.png" />
-		<Ingredient id="Pisco" description="Pisco" image="ingredients/Pisco.png" />
-		<Ingredient id="PortoRed" description="Red Porto" image="ingredients/PortoRed.png" />
-		<Ingredient id="Prosecco" description="Prosecco" image="ingredients/Prosecco.png" />
-		<Ingredient id="Raspberry" description="Raspberry" image="ingredients/Raspberry.png" />
-		<Ingredient id="RaspberrySyrup" description="Raspberry Syrup" image="ingredients/Raspberry.png" />
-		<Ingredient id="RaspberryLiqueur" description="Raspberry Liqueur" image="ingredients/Raspberry.png" />
-		<Ingredient id="RedBull" description="Red Bull" image="ingredients/RedBull.png" />
-		<Ingredient id="RedCurrant" description="Red Currant" image="ingredients/RedCurrant.png" />
-		<Ingredient id="RedHotChiliPeppers" description="Red Hot Chili Peppers" image="ingredients/RedHotChiliPeppers.png" />
-		<Ingredient id="RyeWhisky" description="Rye Whisky" image="ingredients/RyeWhisky.png" />
-		<Ingredient id="RumDark" description="Dark Rum" image="ingredients/RumDark.png" />
-		<Ingredient id="RumGold" description="Gold Rum" image="ingredients/RumGold.png" />
-		<Ingredient id="RumWhite" description="White Rum" image="ingredients/RumWhite.png" />
-		<Ingredient id="Salt" description="Salt" image="ingredients/Salt.png" />
-		<Ingredient id="SodaWater" description="SodaWater" image="ingredients/SodaWater.png" />
-		<Ingredient id="Strawberry" description="Strawberry" image="ingredients/Strawberry.png" />
-		<Ingredient id="StrawberrySyrup" description="Strawberry Syrup" image="ingredients/Strawberry.png" />
-		<Ingredient id="Sugar" description="Sugar" image="ingredients/Sugar.png" />
-		<Ingredient id="SugarBrown" description="Sugar Brown" image="ingredients/SugarBrown.png" />
-		<Ingredient id="SugarCube" description="Sugar Cube" image="ingredients/SugarCube.png" />
-		<Ingredient id="SugarSyrup" description="Sugar Syrup" image="ingredients/SugarSyrup.png" />
-		<Ingredient id="Tabasco" description="Tabasco" image="ingredients/Tabasco.png" />
-		<Ingredient id="Tequila" description="Tequila" image="ingredients/Tequila.png" />
-		<Ingredient id="Tomato" description="Tomato" image="ingredients/Tomato.png" />
-		<Ingredient id="TripleSec" description="Triple Sec" image="ingredients/TripleSec.png" />
-		<Ingredient id="Vanilla" description="Vanilla" image="ingredients/Vanilla.png" />
-		<Ingredient id="VermouthDry" description="Dry Vermouth" image="ingredients/VermouthDry.png" />
-		<Ingredient id="VermouthRed" description="Red Vermouth" image="ingredients/VermouthRed.png" />
-		<Ingredient id="Vodka" description="Vodka" image="ingredients/Vodka.png" />
-		<Ingredient id="VodkaCitron" description="Citron Vodka" image="ingredients/Vodka.png" />
-		<Ingredient id="VodkaStrawberry" description="Vodka Strawberry" image="ingredients/VodkaStrawberry.png" />
-		<Ingredient id="Water" description="Water" image="ingredients/Water.png" />
-		<Ingredient id="Whisky" description="Whisky" image="ingredients/Whisky.png" />
-		<Ingredient id="WineSparklingBrut" description="Wine Sparkling Brut" image="ingredients/WineSparklingBrut.png" />
-		<Ingredient id="WineSparklingSweet" description="Wine Sparkling Sweet" image="ingredients/WineSparklingSweet.png" />
-		<Ingredient id="WineWhite" description="Wine White" image="ingredients/WineWhite.png" />
-		<Ingredient id="WorchestershireSauce" description="Worchestershire Sauce" image="ingredients/WorchestershireSauce.png" />
+		<Ingredient id="Absinthe" description="Absinthe" image="Absinthe.png" />
+		<Ingredient id="Agave" description="Agave" image="Agave.png" />
+		<Ingredient id="Amaretto" description="Amaretto" image="Amaretto.png" />
+		<Ingredient id="Angostura" description="Angostura" image="Angostura.png" />
+		<Ingredient id="Aperol" description="Aperol" image="Aperol.png" />
+		<Ingredient id="ApricotBrandy" description="Apricot Brandy" image="ApricotBrandy.png" />
+		<Ingredient id="Banana" description="Banana" image="Banana.png" />
+		<Ingredient id="Benedictine" description="Benedictine" image="Benedictine.png" />
+		<Ingredient id="Blackberry" description="Blackberry" image="Blackberry.png" />
+		<Ingredient id="BlackberryLiqueur" description="Blackberry Liqueur" image="Blackberry.png" />
+		<Ingredient id="BlueCuracao" description="Blue Curacao" image="BlueCuracao.png" />
+		<Ingredient id="Brandy" description="Brandy" image="Brandy.png" />
+		<Ingredient id="Cacao" description="Cacao" image="Cacao.png" />
+		<Ingredient id="Cachaca" description="Cachaca" image="Cachaca.png" />
+		<Ingredient id="Calvados" description="Calvados" image="Calvados.png" />
+		<Ingredient id="CampariBitter" description="Campari Bitter" image="CampariBitter.png" />
+		<Ingredient id="CelerySalt" description="Celery Salt" image="Salt.png" />
+		<Ingredient id="Champagne" description="Champagne" image="Champagne.png" />
+		<Ingredient id="Cherry" description="Cherry" image="Cherry.png" />
+		<Ingredient id="CherryLiqueur" description="Cherry Liqueur" image="CherryLiqueur.png" />
+		<Ingredient id="Coconut" description="Coconut" image="Coconut.png" />
+		<Ingredient id="CoconutMilk" description="Coconut Milk" image="Coconut.png" />
+		<Ingredient id="Coffee" description="Coffee" image="Coffee.png" />
+		<Ingredient id="Cognac" description="Cognac" image="Cognac.png" />
+		<Ingredient id="Cointreau" description="Cointreau" image="Cointreau.png" />
+		<Ingredient id="Cola" description="Cola" image="Cola.png" />
+		<Ingredient id="Cranberry" description="Cranberry" image="Cranberry.png" />
+		<Ingredient id="CremeDeCacaoDark" description="Creme De Cacao (Dark)" image="CremeDeCacaoDark.png" />
+		<Ingredient id="CremeDeCacaoWhite" description="Creme De Cacao (White)" image="CremeDeCacaoWhite.png" />
+		<Ingredient id="CremeDeCassis" description="Creme De Cassis" image="CremeDeCassis.png" />
+		<Ingredient id="CremeDeMentheGreen" description="Creme De Menthe (Green)" image="CremeDeMentheGreen.png" />
+		<Ingredient id="CremeDeMentheWhite" description="Creme De Menthe (White)" image="CremeDeMentheWhite.png" />
+		<Ingredient id="Cynar" description="Cynar" image="Cynar.png" />
+		<Ingredient id="Drambuie" description="Drambuie" image="Drambuie.png" />
+		<Ingredient id="EggWhite" description="Egg White" image="Egg.png" />
+		<Ingredient id="EggYolk" description="Egg Yolk" image="Egg.png" />
+		<Ingredient id="FernetBranca" description="Fernet Branca" image="FernetBranca.png" />
+		<Ingredient id="FreshCream" description="Fresh Cream" image="FreshCream.png" />
+		<Ingredient id="Galliano" description="Galliano" image="Galliano.png" />
+		<Ingredient id="Gin" description="Gin" image="Gin.png" />
+		<Ingredient id="GingerAle" description="Ginger Ale" image="GingerAle.png" />
+		<Ingredient id="GingerBeer" description="Ginger Beer" image="GingerBeer.png" />
+		<Ingredient id="GrandMarnier" description="Grand Marnier" image="GrandMarnier.png" />
+		<Ingredient id="Granitine" description="Granitine" image="Granitine.png" />
+		<Ingredient id="Grapefruit" description="Grapefruit" image="Grapefruit.png" />
+		<Ingredient id="Honey" description="Honey" image="Honey.png" />
+		<Ingredient id="IrishCream" description="Irish Cream" image="IrishCream.png" />
+		<Ingredient id="IrishWhisky" description="Irish Whisky" image="IrishWhisky.png" />
+		<Ingredient id="KahluaCoffeeLiqueur" description="Kahlua Coffee Liqueur" image="KahluaCoffeeLiqueur.png" />
+		<Ingredient id="Kirsch" description="Kirsch" image="Kirsch.png" />
+		<Ingredient id="Lemon" description="Lemon" image="Lemon.png" />
+		<Ingredient id="LemonSoda" description="Lemon Soda" image="LemonSoda.png" />
+		<Ingredient id="LilletBlonde" description="Lillet Blonde" image="LilletBlonde.png" />
+		<Ingredient id="Lime" description="Lime" image="Lime.png" />
+		<Ingredient id="Mandarine" description="Mandarine" image="Mandarine.png" />
+		<Ingredient id="Maraschino" description="Maraschino" image="Maraschino.png" />
+		<Ingredient id="Midori" description="Midori" image="Midori.png" />
+		<Ingredient id="Mint" description="Mint" image="Mint.png" />
+		<Ingredient id="Nutmeg" description="Nutmeg" image="Nutmeg.png" />
+		<Ingredient id="OldTomGin" description="Old Tom Gin" image="OldTomGin.png" />
+		<Ingredient id="Olive" description="Olive" image="Olive.png" />
+		<Ingredient id="OliveJuice" description="Olive Juice" image="Olive.png" />
+		<Ingredient id="Onion" description="Onion" image="Onion.png" />
+		<Ingredient id="OnionRing" description="Onion Ring" image="Onion.png" />
+		<Ingredient id="Orange" description="Orange" image="Orange.png" />
+		<Ingredient id="OrangeBitter" description="Orange Bitter" image="OrangeBitter.png" />
+		<Ingredient id="OrangeCuracao" description="Orange Curacao" image="OrangeCuracao.png" />
+		<Ingredient id="OrangeFlowerWater" description="Orange Flower Water" image="OrangeFlowerWater.png" />
+		<Ingredient id="Orgeat" description="Orgeat" image="Orgeat.png" />
+		<Ingredient id="Peach" description="Peach" image="Peach.png" />
+		<Ingredient id="PeachBitter" description="Peach Bitter" image="PeachBitter.png" />
+		<Ingredient id="PeachLiqueur" description="Peach Liqueur" image="Peach.png" />
+		<Ingredient id="Pepper" description="Pepper" image="Pepper.png" />
+		<Ingredient id="PeychaudsBitter" description="Peychaud&#39;s Bitter" image="PeychaudsBitter.png" />
+		<Ingredient id="Pineapple" description="Pineapple" image="Pineapple.png" />
+		<Ingredient id="Pisco" description="Pisco" image="Pisco.png" />
+		<Ingredient id="Pomegranate" description="Pomegranate" image="Pomegranate.png" />
+		<Ingredient id="PortoRed" description="Red Porto" image="PortoRed.png" />
+		<Ingredient id="Prosecco" description="Prosecco" image="Prosecco.png" />
+		<Ingredient id="Raspberry" description="Raspberry" image="Raspberry.png" />
+		<Ingredient id="RaspberrySyrup" description="Raspberry Syrup" image="Raspberry.png" />
+		<Ingredient id="RaspberryLiqueur" description="Raspberry Liqueur" image="Raspberry.png" />
+		<Ingredient id="RedBull" description="Red Bull" image="RedBull.png" />
+		<Ingredient id="RedCurrant" description="Red Currant" image="RedCurrant.png" />
+		<Ingredient id="RedHotChiliPeppers" description="Red Hot Chili Peppers" image="RedHotChiliPeppers.png" />
+		<Ingredient id="RyeWhisky" description="Rye Whisky" image="RyeWhisky.png" />
+		<Ingredient id="RumDark" description="Dark Rum" image="RumDark.png" />
+		<Ingredient id="RumGold" description="Gold Rum" image="RumGold.png" />
+		<Ingredient id="RumWhite" description="White Rum" image="RumWhite.png" />
+		<Ingredient id="Salt" description="Salt" image="Salt.png" />
+		<Ingredient id="SodaWater" description="SodaWater" image="SodaWater.png" />
+		<Ingredient id="Strawberry" description="Strawberry" image="Strawberry.png" />
+		<Ingredient id="StrawberrySyrup" description="Strawberry Syrup" image="Strawberry.png" />
+		<Ingredient id="Sugar" description="Sugar" image="Sugar.png" />
+		<Ingredient id="SugarBrown" description="Sugar Brown" image="SugarBrown.png" />
+		<Ingredient id="SugarCube" description="Sugar Cube" image="SugarCube.png" />
+		<Ingredient id="SugarSyrup" description="Sugar Syrup" image="SugarSyrup.png" />
+		<Ingredient id="Tabasco" description="Tabasco" image="Tabasco.png" />
+		<Ingredient id="Tequila" description="Tequila" image="Tequila.png" />
+		<Ingredient id="Tomato" description="Tomato" image="Tomato.png" />
+		<Ingredient id="TripleSec" description="Triple Sec" image="TripleSec.png" />
+		<Ingredient id="Vanilla" description="Vanilla" image="Vanilla.png" />
+		<Ingredient id="VermouthDry" description="Dry Vermouth" image="VermouthDry.png" />
+		<Ingredient id="VermouthRed" description="Red Vermouth" image="VermouthRed.png" />
+		<Ingredient id="Vodka" description="Vodka" image="Vodka.png" />
+		<Ingredient id="VodkaCitron" description="Citron Vodka" image="Vodka.png" />
+		<Ingredient id="VodkaStrawberry" description="Vodka Strawberry" image="VodkaStrawberry.png" />
+		<Ingredient id="Water" description="Water" image="Water.png" />
+		<Ingredient id="Whisky" description="Whisky" image="Whisky.png" />
+		<Ingredient id="WineSparklingBrut" description="Wine Sparkling Brut" image="WineSparklingBrut.png" />
+		<Ingredient id="WineSparklingSweet" description="Wine Sparkling Sweet" image="WineSparklingSweet.png" />
+		<Ingredient id="WineWhite" description="Wine White" image="WineWhite.png" />
+		<Ingredient id="WorchestershireSauce" description="Worchestershire Sauce" image="WorchestershireSauce.png" />
 	</Ingredients>
 	<Cocktails>
 		<Cocktail id="Alexander" description="Alexander" classification="AfterDinner" glass="Cocktail" alcoholicLevel="Medium-High">
@@ -206,7 +207,7 @@
 			<Ingredient id="SodaWater" quantity="6" />
 			<Ingredient id="Angostura" quantity="1" unit="drop" />
 		</Cocktail>
-		<Cocktail id="TomCollins" description="Tom Collins" classification="LongDrink" glass="Highball" alcoholicLevel="Medium-High">
+		<Cocktail id="TomCollins" description="Tom Collins" classification="LongDrink" glass="Highball" alcoholicLevel="Medium-High" variantOf="JohnCollins">
 			<Info technique="Build" garnish="Lemon slice &amp; Cherry"></Info>
 			<Ingredient id="OldTomGin" quantity="4.5" />
 			<Ingredient id="Lemon" quantity="3" />
@@ -345,28 +346,28 @@ Muddle until dissolve. Fill the glass with ice cubes and add whisky. </Info>
 			<Ingredient id="WineSparklingBrut" quantity="10" />
 			<Ingredient id="Peach" quantity="5" />
 		</Cocktail>
-		<Cocktail id="Puccini" description="Puccini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
+		<Cocktail id="Puccini" description="Puccini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium" variantOf="Bellini">
 			<Info technique="Build" garnish=""></Info>
 			<Ingredient id="WineSparklingBrut" quantity="10" />
 			<Ingredient id="Mandarine" quantity="5" />
 		</Cocktail>
-		<Cocktail id="Rossini" description="Rossini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
+		<Cocktail id="Rossini" description="Rossini" classification="Sparkling" glass="Wine" alcoholicLevel="Medium" variantOf="Bellini">
 			<Info technique="Build" garnish=""></Info>
 			<Ingredient id="WineSparklingBrut" quantity="10" />
 			<Ingredient id="Strawberry" quantity="5" />
 		</Cocktail>
-		<Cocktail id="Tintoretto" description="Tintoretto" classification="Sparkling" glass="Wine" alcoholicLevel="Medium">
+		<Cocktail id="Tintoretto" description="Tintoretto" classification="Sparkling" glass="Wine" alcoholicLevel="Medium" variantOf="Bellini">
 			<Info technique="Build" garnish=""></Info>
 			<Ingredient id="WineSparklingBrut" quantity="10" />
 			<Ingredient id="Pomegranate" quantity="5" />
 		</Cocktail>
 		<Cocktail id="BlackRussian" description="Black Russian" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="Medium-High">
-			<Info technique="Build" garnish="">White Russian: 2CL FreshCream</Info>
+			<Info technique="Build" garnish=""></Info>
 			<Ingredient id="Vodka" quantity="5" />
 			<Ingredient id="KahluaCoffeeLiqueur" quantity="2" />
 		</Cocktail>
-		<Cocktail id="WhiteRussian" description="White Russian" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="Medium-High">
-			<Info technique="Build" garnish="">Layer of FreshCream</Info>
+		<Cocktail id="WhiteRussian" description="White Russian" classification="AfterDinner" glass="OldFashioned" alcoholicLevel="Medium-High" variantOf="BlackRussian">
+			<Info technique="Build" garnish="">Layer of Fresh Cream</Info>
 			<Ingredient id="Vodka" quantity="5" />
 			<Ingredient id="KahluaCoffeeLiqueur" quantity="2" />
 			<Ingredient id="FreshCream" quantity="2" />
@@ -387,7 +388,7 @@ Muddle until dissolve. Fill the glass with ice cubes and add whisky. </Info>
 			<Ingredient id="Lime" quantity="0.5" unit="pcs" />
 			<Ingredient id="Sugar" quantity="2" unit="spoon" />
 		</Cocktail>
-		<Cocktail id="Caipiroska" description="Caipiroska" classification="AllDay" glass="OldFashioned" alcoholicLevel="High">
+		<Cocktail id="Caipiroska" description="Caipiroska" classification="AllDay" glass="OldFashioned" alcoholicLevel="High" variantOf="Caipirinha">
 			<Info technique="Muddler" garnish=""></Info>
 			<Ingredient id="Vodka" quantity="5" />
 			<Ingredient id="Lime" quantity="0.5" unit="pcs" />
@@ -468,7 +469,7 @@ Muddle until dissolve. Fill the glass with ice cubes and add whisky. </Info>
 			<Ingredient id="Angostura" quantity="1" unit="drop" />
 		</Cocktail>
 		<Cocktail id="IrishCoffee" description="Irish Coffee" classification="HotDrink" glass="Tankard" alcoholicLevel="High">
-			<Info technique="Build" garnish="Layer of Fresh Cream">Warm the Irish whiskey over a burner. Pour into the glass (for hot drink) hot coffee, and add a teaspoon of sugar.</Info>
+			<Info technique="Build" garnish="">Warm the Irish whiskey over a burner. Pour into the glass (for hot drink) hot coffee, and add a teaspoon of sugar. Layer of Fresh Cream</Info>
 			<Ingredient id="IrishWhisky" quantity="4" />
 			<Ingredient id="Coffee" quantity="9" />
 			<Ingredient id="FreshCream" quantity="3" />
@@ -479,7 +480,7 @@ Muddle until dissolve. Fill the glass with ice cubes and add whisky. </Info>
 			<Ingredient id="WineWhite" quantity="9" />
 			<Ingredient id="CremeDeCassis" quantity="1" />
 		</Cocktail>
-		<Cocktail id="KirRoyal" description="Kir Royal" classification="BeforeDinner" glass="Flute" alcoholicLevel="Medium-Low">
+		<Cocktail id="KirRoyal" description="Kir Royal" classification="BeforeDinner" glass="Flute" alcoholicLevel="Medium-Low" variantOf="Kir">
 			<Info technique="Build" garnish="RedCurrant"></Info>
 			<Ingredient id="Champagne" quantity="9" />
 			<Ingredient id="CremeDeCassis" quantity="1" />
