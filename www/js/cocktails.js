@@ -30,7 +30,7 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 
 	this.setBaseCocktail = function(baseCocktail) { _baseCocktail = baseCocktail; };
 	this.getBaseCocktail = function() { return _baseCocktail; };
-	this.hasVariant = function() {return (_baseCocktail != null && _baseCocktail != ""); };
+	this.hasVariant = function() { return Boolean(_baseCocktail); };
 
 	this.setInfo = function (technique, garnish, value) { _technique = technique; _garnish = garnish; _info = value; };
 	this.Technique = function () { return _technique; };
@@ -62,7 +62,7 @@ function Book()
 	};
 
 	var IMAGE_DIRECTORY = "img";
-	var BASE_DIRECTORY = "cocktails";
+	var BASE_DIRECTORY = "Cocktails";
 	var IBA_FILE = BASE_DIRECTORY + "/iba.xml";
 	var CUSTOM_FILE = BASE_DIRECTORY + "/custom.xml";
 
@@ -78,7 +78,7 @@ function Book()
 	var _currentCocktail = null;
 
 	var CONVERSION_TYPE = { CL: "CL", OZ: "OZ", OZQ: "OZQ" };
-	var _conversionType = CONVERSION_TYPE.OZ;
+	var _conversionType = CONVERSION_TYPE.CL;
 
 	var _listFilter = null;
 	var _listClassificationFilter = null;
@@ -418,8 +418,16 @@ function Book()
 		text += '<div id="mainList">';
 		text += '</div>';
 
-		$("#mainPage").html(text);
+		_setHtml('#mainPage', text);
 		_showListInternal();
+	}
+
+	var _setHtml = function(id, text)
+	{
+		$(id).hide();
+		$(id).html(text);
+		$(id).get(0).offsetHeight; // no need to store this anywhere, the reference is enough
+		$(id).show();
 	}
 
 	var _showListInternal = function()
@@ -451,7 +459,7 @@ function Book()
 				text += '</div>';
 			}
 		}
-		$("#mainList").html(text);
+		_setHtml('#mainList', text);
 	}
 
 	var _valueToUnit = function(value, unitMeasure)
@@ -645,7 +653,7 @@ function Book()
 			text += '</div>';
 			//
 			text += '</div>';
-			$("#mainPage").html(text);
+			_setHtml('#mainPage', text);
 		}
 	}
 
@@ -686,13 +694,13 @@ function Book()
 
 		text += '<div class="Credits"><div class="applicationTitle">Credits</div>';
 		text += '<img class="CreditsImage" src="img/OpenSource.svg" />';
-		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div>';
+		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div><br/>';
 		text += '<img class="CreditsPhoto" src="img/credits.jpg" />';
 		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div></div>';
 		text += '</div>';
 
 		text += '</div>';
-		$("#mainPage").html(text);
+		_setHtml('#mainPage', text);
 	};
 
 	var _show = function()
@@ -790,7 +798,11 @@ function Book()
 			nodesParent = nodes.iterateNext();
 			if(nodesParent)
 			{
-				_conversionType = nodesParent.getAttribute("conversionType");
+				var newValue = nodesParent.getAttribute("conversionType");
+				if(newValue)
+				{
+					_conversionType = nodesParent.getAttribute("conversionType");
+				}
 			}
 		}
 	}
@@ -884,7 +896,7 @@ function Book()
 		text += '</div>';
 		text += '<div class="EditorSeparator"></div>';
 		text += '<div class="EditorButton" onClick="Book.appendEditorIngredient();"><img class="EditorIngredientImage" src="img/add.svg"><img>Add ingredient</div>';
-		$("#mainPage").html(text);
+		_setHtml('#mainPage', text);
 	}
 
 	var _EditorIngredientId = 0;
