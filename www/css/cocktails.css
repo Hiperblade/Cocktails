@@ -310,6 +310,13 @@
 .IngredientImage
 {
 	padding-left: 0.5em;
+	font-size: 1em;
+	height: 6.5em;
+}
+
+.IngredientImg
+{
+	height: 100%;
 }
 
 .IngredientName

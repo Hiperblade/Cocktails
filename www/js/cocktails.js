@@ -636,7 +636,7 @@ function Book()
 					text += ' IngredientLandScape';
 				}
 				text += '">';
-				text +=  '<div class="IngredientImage"><img clas="bookImage" src="' + IMAGE_DIRECTORY + '/' + _getIngredientImage(ingredientId) + '" /></div>';
+				text +=  '<div class="IngredientImage"><img clas="IngredientImg" src="' + IMAGE_DIRECTORY + '/' + _getIngredientImage(ingredientId) + '" /></div>';
 				text +=  '<div class="IngredientName">' + _getIngredientDescription(ingredientId) + '</div>';
 				if(ingredients[ingredientId].UnitMeasure)
 				{
@@ -729,15 +729,24 @@ function Book()
 
 	var _setCurrentCocktail = function(id)
 	{
-		_currentCocktail = null;
-		for(var i = 0; i < _cocktails.length; i++)
+		if(Boolean(id))
 		{
-			if(_cocktails[i].Id() == id)
+			for(var i = 0; i < _cocktails.length; i++)
 			{
-				_lastScrollPosition = $(window).scrollTop();
-				_currentCocktail = _cocktails[i];
-				break;
+				if(_cocktails[i].Id() == id)
+				{
+					if(_currentCocktail == null)
+					{
+						_lastScrollPosition = $(window).scrollTop();
+					}
+					_currentCocktail = _cocktails[i];
+					break;
+				}
 			}
+		}
+		else
+		{
+			_currentCocktail = null;
 		}
 		_show();
 	}
