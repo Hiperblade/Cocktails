@@ -608,22 +608,16 @@ function Book()
 			text +=   '<img class="GlassImage" src="' + IMAGE_DIRECTORY + '/' + _getGlassImage(_currentCocktail.Glass()) + '"/>';
 			text +=   '<div class="GlassName">' + _getGlassDescription(_currentCocktail.Glass()) + '</div>';
 			text +=  '</div>';
-			text += '</div>';
-
-			text += '<div class="CocktailInfo">';
-			text += '<div><div class="Label">Technique: </div><div class="Value">' + _currentCocktail.Technique() + '</div></div>';
-			text += '<div><div class="Label">Garnish: </div><div class="Value">' + _currentCocktail.Garnish() + '</div></div>';
-			text += '</div>';
+			text +=  '<div><div class="Label">Technique: </div><div class="Value">' + _currentCocktail.Technique() + '</div></div>';
+			text +=  '<div><div class="Label">Garnish: </div><div class="Value">' + _currentCocktail.Garnish() + '</div></div>';
 			var nextVariant = _getNextVariantOf(_currentCocktail.getBaseCocktail(), _currentCocktail.Id());
 			if(nextVariant)
 			{
-				text += '<div class="EditorButton" onClick="Book.setCurrentCocktail(\'' + nextVariant + '\')"><img class="EditorIngredientImage" src="img/edit.svg"><img>' + _getCocktail(nextVariant).Description() + '</div>';
+				text += '<div class="EditorButton" onClick="Book.setCurrentCocktail(\'' + nextVariant + '\')"><img class="EditorButtonImage" src="img/edit.svg"><img>' + _getCocktail(nextVariant).Description() + '</div>';
 			}
-			text += '<div class="CocktailInfo">';
-			text += '<div>' + _currentCocktail.Info() + '</div>';
+			text +=  '<div class="CocktailInfo">' + _currentCocktail.Info() + '</div>';
+			text +=  '<div>Ingredients:</div>';
 			text += '</div>';
-
-			text += '<div class="Separator">Ingredients:</div>';
 
 			text += '<div class="CocktailsIngredient">';
 			var landscape = (CordovaApp.currentOrientation() == ScreenOrientation.LANDSCAPE);
@@ -843,12 +837,10 @@ function Book()
 
 	var _showEditor = function()
 	{
-		// form di modifica
-		var text = '<div class="applicationTitle">Edit Cocktail</div>';
-
-		text += '<div class="EditorGroup"><div class="EditorLabel">Id: </div><input id="EditorId" class="EditorControl" value="' + _currentCocktail.Id() + '"></input></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Name: </div><input id="EditorDescription" class="EditorControl" value="' + _currentCocktail.Description() + '"></input></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Classification: </div><select id="EditorClassification" class="EditorControl">';
+		var text = '<div class="Cocktail">';
+		text +=  '<input type="hidden" id="EditorId" value="' + _currentCocktail.Id() + '"></input>';
+		text +=  '<div class="CocktailName"><input class="EditorIngredientControl" id="EditorDescription" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Description()) + '"></input></div>';
+		text +=  '<div><div class="Label">Classification: </div><select id="EditorClassification">';
 		for(var i = 0; i < CLASSIFICATION.length; i++)
 		{
 			text +=  '<option value="' + CLASSIFICATION[i] + '"';
@@ -859,18 +851,7 @@ function Book()
 			text +=  '>' + CLASSIFICATION[i] + '</option>';
 		}
 		text += '</select></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Glass: </div><select id="EditorGlass" class="EditorControl">';
-		for(var glassId in GLASSES)
-		{
-			text +=  '<option value="' + glassId + '"';
-			if(glassId == _currentCocktail.Glass())
-			{
-				text += ' selected';
-			}
-			text +=  '>' + GLASSES[glassId].Description + '</option>';
-		}
-		text += '</select></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">AlcoholicLevel: </div><select id="EditorAlcoholicLevel" class="EditorControl">';
+		text +=  '<div><div class="Label">AlcoholicLevel: </div><select id="EditorAlcoholicLevel">';
 		for(var i = 0; i < ALCOHOLIC_LEVELS.length; i++)
 		{
 			text +=  '<option value="' + ALCOHOLIC_LEVELS[i] + '"';
@@ -881,7 +862,23 @@ function Book()
 			text +=  '>' + ALCOHOLIC_LEVELS[i] + '</option>';
 		}
 		text += '</select></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Technique: </div><select id="EditorTechnique" class="EditorControl">';
+		
+		text +=  '<div class="Glass">';
+		text +=   '<img class="GlassImage" id="EditorGlassImage" src="' + IMAGE_DIRECTORY + '/' + _getGlassImage(_currentCocktail.Glass()) + '"/>';
+		text +=   '<div class="GlassName"><select id="EditorGlass" onChange="Book.setEditorGlassImage(this.value);">';
+		for(var glassId in GLASSES)
+		{
+			text +=  '<option value="' + glassId + '"';
+			if(glassId == _currentCocktail.Glass())
+			{
+				text += ' selected';
+			}
+			text +=  '>' + GLASSES[glassId].Description + '</option>';
+		}
+		text += '</select></div>';
+		text +=  '</div>';
+
+		text += '<div><div class="Label">Technique: </div><select id="EditorTechnique">';
 		for(var i = 0; i < TECHNIQUES.length; i++)
 		{
 			text +=  '<option value="' + TECHNIQUES[i] + '"';
@@ -892,10 +889,24 @@ function Book()
 			text +=  '>' + TECHNIQUES[i] + '</option>';
 		}
 		text += '</select></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Garnish: </div><input id="EditorGarnish" class="EditorControl" value="' + _currentCocktail.Garnish() + '"></input></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Info: </div><input id="EditorInfo" class="EditorControl" value="' + _currentCocktail.Info() + '"></input></div>';
+		text += '<div><div class="Label">Garnish: </div><input id="EditorGarnish" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Garnish()) + '"></input></div>';
+		text += '<div><div class="Label">Variant of: </div><select id="EditorVariantOf">';
+		text +=  '<option value=""></option>';
+		for(var i = 0; i < _cocktails.length; i++)
+		{
+			text +=  '<option value="' + _cocktails[i] + '"';
+			if(_cocktails[i].Id() == _currentCocktail.getBaseCocktail())
+			{
+				text += ' selected';
+			}
+			text +=  '>' + _cocktails[i].Description() + '</option>';
+		}
+		text += '</select></div>';
+		text += '<div><textarea class="EditorIngredientControl" id="EditorInfo" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Info()) + '"></textarea></div>';
+		text += '<div>Ingredients:</div>';
+		text += '</div>';
 
-		text += '<div id="EditorIngredients">';
+		text += '<div id="EditorIngredients" class="CocktailsIngredient">';
 		_EditorIngredientId = 0;
 		var ingredients = _currentCocktail.getIngredients();
 		for(var ingredientId in ingredients)
@@ -904,7 +915,9 @@ function Book()
 		}
 		text += '</div>';
 		text += '<div class="EditorSeparator"></div>';
-		text += '<div class="EditorButton" onClick="Book.appendEditorIngredient();"><img class="EditorIngredientImage" src="img/add.svg"><img>Add ingredient</div>';
+		text += '<div class="EditorButton" onClick="Book.appendEditorIngredient();"><img class="EditorButtonImage" src="img/add.svg"><img>Add ingredient</div>';
+		//
+		text += '</div>';
 		_setHtml('#mainPage', text);
 	}
 
@@ -919,14 +932,117 @@ function Book()
 	{
 		$("#EditorIngredient_" + id).remove();
 	}
+	
+	var _setEditorGlassImage = function(value)
+	{
+		$("#EditorGlassImage").attr("src", IMAGE_DIRECTORY + '/' + _getGlassImage(value));
+	}
+	
+	var _setEditorIngredientImage = function(id, value)
+	{
+		$("#EditorIngredientImage_" + id).attr("src", IMAGE_DIRECTORY + '/' + _getIngredientImage(value));
+	}
 
+	var _validateInputNumber = function(e, id)
+	{
+		// Allow: "." if not presents
+		if ((e.keyCode == 110) || (e.keyCode == 190))
+		{
+			if($("#" + id)[0].value.indexOf(".") == -1)
+			{
+				return;
+			}
+			e.preventDefault();
+		}
+		// Allow: backspace, delete, tab, escape, enter
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13]) !== -1 ||
+             // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39))
+		{
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105))
+		{
+            e.preventDefault();
+        }
+	}
+
+	var _validateInputString = function(e)
+	{
+		// Allow: backspace, delete, tab, escape, enter, shift, AltGr, Alt
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 16, 17, 18]) !== -1 ||
+             // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39))
+		{
+                 // let it happen, don't do anything
+                 return;
+        }
+		if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode >= 65 && e.keyCode <= 90))
+		{
+            return;
+        }
+		// gestione caratteri speciali
+		var character = String.fromCharCode(e.keyCode);
+		//*, -, '.', ',', ':', ';', '-', '+', ?
+		if((e.keyCode === 222 && e.shiftKey === true)
+			|| ($.inArray(e.keyCode, [106, 107, 109, 110, 111, 171, 173, 188, 190]) !== -1)
+			|| ($.inArray(character, [' ', '=', '(', ')', '!', '%']) !== -1))
+		{
+			return;
+		}
+		// gestione caratteri speciali escape
+		// ' => 222
+		if((e.keyCode === 222 && e.shiftKey === false)
+			|| ($.inArray(character, ['&', '<', '>', '"']) !== -1))
+		{
+			return;
+		}
+		e.preventDefault();
+	}
+	
+	var _escapeToString = function(value)
+	{
+		// gestione caratteri speciali escape
+		value = value.replace("&#38;", "&");
+		value = value.replace("&#60;", "<");
+		value = value.replace("&#62;", ">");
+		value = value.replace("&#39;", "'");
+		value = value.replace("&#34;", "\"");
+		return value;
+	}
+
+	var _escapeFromString = function(value)
+	{
+		// gestione caratteri speciali escape
+		value = value.replace("&", "&#38;");
+		value = value.replace("<", "&#60;");
+		value = value.replace(">", "&#62;");
+		value = value.replace("'", "&#39;");
+		value = value.replace("\"", "&#34;");
+		return value;
+	}
+	
 	var _createIngredientControl = function(ingredientId, ingredient)
 	{
 		_EditorIngredientId++;
-		var text = '<div id="EditorIngredient_' + _EditorIngredientId + '" class="EditorIngredient">';
+		var text = '<div id="EditorIngredient_' + _EditorIngredientId + '"';
+		if(CordovaApp.currentOrientation() == ScreenOrientation.LANDSCAPE)
+		{
+			text += ' class="IngredientLandScape"';
+		}
+		text += '>';
+		text += '<div class="Ingredient">';
 		text += '<div class="EditorSeparator"></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Ingredient: </div><select id="EditorIngredient_' + _EditorIngredientId + '_Id" class="EditorControl">';
-		text +=  '<option value=""></option>';
+		text +=  '<div class="Ingredient EditorIngredientRigth">';
+		text +=   '<div class="IngredientImage"><img id="EditorIngredientImage_' + _EditorIngredientId + '" clas="IngredientImg" src="' + IMAGE_DIRECTORY + '/' + _getIngredientImage(ingredientId) + '" /></div>';
+		text +=   '<div class="IngredientName"><select class="EditorIngredientControl" id="EditorIngredient_' + _EditorIngredientId + '_Id" onChange="Book.setEditorIngredientImage(' + _EditorIngredientId + ', this.value);">';
+		text +=   '<option value=""></option>';
 		for(var id in INGREDIENTS)
 		{
 			text +=  '<option value="' + id + '"';
@@ -936,9 +1052,10 @@ function Book()
 			}
 			text +=  '>' + INGREDIENTS[id].Description + '</option>';
 		}
-		text += '</select></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Quantity: </div><input id="EditorIngredient_' + _EditorIngredientId + '_Quantity" class="EditorControl" value="' + ingredient.Quantity + '"></input></div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">UnitMeasure: </div><select id="EditorIngredient_' + _EditorIngredientId + '_UnitMeasure" class="EditorControl">';
+		text +=  '</select></div>';
+		text +=  '<div class="IngredientQuantity"><input class="EditorIngredientControl" id="EditorIngredient_' + _EditorIngredientId + '_Quantity" value="' + ingredient.Quantity
+													+ '" onkeydown="Book.validateInputNumber(event, \'EditorIngredient_' + _EditorIngredientId + '_Quantity\')"></input></div>';
+		text +=  '<div class="IngredientUnitMeasure"><select id="EditorIngredient_' + _EditorIngredientId + '_UnitMeasure">';
 		for(var unitId in UNIT_MEASURE)
 		{
 			text +=  '<option value="' + UNIT_MEASURE[unitId] + '"';
@@ -948,9 +1065,10 @@ function Book()
 			}
 			text +=  '>' + unitId + '</option>';
 		}
-		text += '</select></div>';
-
-		text += '<div class="EditorButton" onClick="Book.removeEditorIngredient(' + _EditorIngredientId + ');"><img class="EditorIngredientImage" src="img/delete.svg"><img>Delete</div>';
+		text +=   '</select></div>';
+		text +=  '</div>';
+		text += '</div>';
+		text += '<div class="EditorButton" onClick="Book.removeEditorIngredient(' + _EditorIngredientId + ');"><img class="EditorButtonImage" src="img/delete.svg"><img>Delete</div>';
 		text += '</div>';
 		return text;
 	}
@@ -958,8 +1076,16 @@ function Book()
 	var _getCustomCocktail = function()
 	{
 		// recupera le informazioni dalla form di modifica
-		var ret = new Cocktail($('#EditorId')[0].value, $('#EditorDescription')[0].value, $('#EditorClassification')[0].value, $('#EditorGlass')[0].value, $('#EditorAlcoholicLevel')[0].value);
-		ret.setInfo($('#EditorTechnique')[0].value, $('#EditorGarnish')[0].value, $('#EditorInfo')[0].value);
+		var description = _escapeFromString($('#EditorDescription')[0].value);
+		var id = $('#EditorId')[0].value;
+		if(Boolean(id))
+		{
+			id = description.replace(/\s/g, '');
+		}
+		var ret = new Cocktail(id, description, $('#EditorClassification')[0].value, $('#EditorGlass')[0].value, $('#EditorAlcoholicLevel')[0].value);
+		ret.setBaseCocktail($('#EditorVariantOf')[0].value);
+		ret.setInfo($('#EditorTechnique')[0].value, _escapeFromString($('#EditorGarnish')[0].value), _escapeFromString($('#EditorInfo')[0].value));
+
 		for(var i = 1; i <= _EditorIngredientId; i++)
 		{
 			ret.addIngredient($('#EditorIngredient_' + i + '_Id')[0].value,
@@ -999,7 +1125,8 @@ function Book()
 				newCocktail.setAttribute(TAG.Classification, cocktail.Classification());
 				newCocktail.setAttribute("glass", cocktail.Glass());
 				newCocktail.setAttribute(TAG.AlcoholicLevel, cocktail.AlcoholicLevel());
-
+				newCocktail.setAttribute("variantOf", cocktail.getBaseCocktail());
+				
 				var newCocktailInfo = xmlDoc.createElement(TAG.Info);
 				newCocktailInfo.setAttribute(TAG.Technique, cocktail.Technique());
 				newCocktailInfo.setAttribute(TAG.Garnish, cocktail.Garnish());
@@ -1258,6 +1385,10 @@ function Book()
 	this.resetFilter = _resetFilter;
 	this.appendEditorIngredient = _appendEditorIngredient;
 	this.removeEditorIngredient = _removeEditorIngredient;
+	this.setEditorGlassImage = _setEditorGlassImage;
+	this.setEditorIngredientImage = _setEditorIngredientImage;
+	this.validateInputNumber = _validateInputNumber;
+	this.validateInputString = _validateInputString;
 }
 
 Book = new Book();

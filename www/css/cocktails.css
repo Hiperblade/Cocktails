@@ -226,6 +226,12 @@
 {
 	position: relative;
 	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.CocktailInfo
+{
+	text-align: justify;
 }
 
 .CocktailName
@@ -251,7 +257,7 @@
 
 .GlassImage
 {
-	height: 4.5em;
+	height: 4.0em;
 }
 
 .GlassName
@@ -260,14 +266,6 @@
 	left: 0;
 	right: 0;
 	font-size: 0.5em;
-}
-
-.CocktailInfo
-{
-	text-align: justify;
-
-	padding-left: 1em;
-	padding-right: 1em;
 }
 
 .Label
@@ -279,15 +277,6 @@
 {
 	font-weight: bold;
 	display: inline;
-}
-
-.Separator
-{
-	text-align: left;
-
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	margin-left: 1em;
 }
 
 .CocktailsIngredient
@@ -398,14 +387,21 @@
 	background-color: white;
 }
 
-.EditorIngredient
-{
-}
-
-.EditorIngredientImage
+.EditorButtonImage
 {
 	width: 1em;
 	height: 1em;
 }
 
+.EditorIngredientRigth
+{
+	margin-right: 1em;
+}
+
+.EditorIngredientControl
+{
+	font-size: 1em;
+	height: 100%;
+	width: 100%;
+}
 
