@@ -108,7 +108,7 @@ function Book()
 
 	var _getNextVariantOf = function(baseCocktail, cocktail)
 	{
-		if(baseCocktail == null || baseCocktail == "")
+		if(!Boolean(baseCocktail))
 		{
 			if(!_variants[cocktail])
 			{
@@ -890,19 +890,36 @@ function Book()
 		}
 		text += '</select></div>';
 		text += '<div><div class="Label">Garnish: </div><input id="EditorGarnish" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Garnish()) + '"></input></div>';
-		text += '<div><div class="Label">Variant of: </div><select id="EditorVariantOf">';
-		text +=  '<option value=""></option>';
-		for(var i = 0; i < _cocktails.length; i++)
+		text += '<div><div class="Label">Variant of: </div>';
+		if(_currentCocktail.Id())
 		{
-			text +=  '<option value="' + _cocktails[i] + '"';
-			if(_cocktails[i].Id() == _currentCocktail.getBaseCocktail())
+			text += '<input type="hidden" id="EditorVariantOf"  value="' + _currentCocktail.getBaseCocktail() + '" />';
+			for(var i = 0; i < _cocktails.length; i++)
 			{
-				text += ' selected';
+				if(_cocktails[i].Id() == _currentCocktail.getBaseCocktail())
+				{
+					text += _cocktails[i].Description();
+					break;
+				}
 			}
-			text +=  '>' + _cocktails[i].Description() + '</option>';
 		}
-		text += '</select></div>';
-		text += '<div><textarea class="EditorIngredientControl" id="EditorInfo" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Info()) + '"></textarea></div>';
+		else
+		{
+			text += '<select id="EditorVariantOf">';
+			text +=  '<option value=""></option>';
+			for(var i = 0; i < _cocktails.length; i++)
+			{
+				text +=  '<option value="' + _cocktails[i].Id() + '"';
+				if(_cocktails[i].Id() == _currentCocktail.getBaseCocktail())
+				{
+					text += ' selected';
+				}
+				text +=  '>' + _cocktails[i].Description() + '</option>';
+			}
+			text += '</select>';
+		}
+		text += '</div>';
+		text += '<div><textarea class="EditorIngredientControl" id="EditorInfo" onkeydown="Book.validateInputString(event)">' + _escapeToString(_currentCocktail.Info()) + '</textarea></div>';
 		text += '<div>Ingredients:</div>';
 		text += '</div>';
 
@@ -1076,14 +1093,20 @@ function Book()
 	var _getCustomCocktail = function()
 	{
 		// recupera le informazioni dalla form di modifica
-		var description = _escapeFromString($('#EditorDescription')[0].value);
 		var id = $('#EditorId')[0].value;
-		if(Boolean(id))
+		var description = _escapeFromString($('#EditorDescription')[0].value);
+		var baseCocktail = $('#EditorVariantOf')[0].value;
+		if(!Boolean(id))
 		{
 			id = description.replace(/\s/g, '');
+			
+			if(baseCocktail)
+			{
+				_addVariantOf(baseCocktail, id);
+			}
 		}
 		var ret = new Cocktail(id, description, $('#EditorClassification')[0].value, $('#EditorGlass')[0].value, $('#EditorAlcoholicLevel')[0].value);
-		ret.setBaseCocktail($('#EditorVariantOf')[0].value);
+		ret.setBaseCocktail(baseCocktail);
 		ret.setInfo($('#EditorTechnique')[0].value, _escapeFromString($('#EditorGarnish')[0].value), _escapeFromString($('#EditorInfo')[0].value));
 
 		for(var i = 1; i <= _EditorIngredientId; i++)
@@ -1310,7 +1333,6 @@ function Book()
 				}
 				else if(_showingEditor == true)
 				{
-
 					_saveCustomCocktail(_getCustomCocktail());
 					_showingEditor = false;
 				}
