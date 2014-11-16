@@ -127,7 +127,7 @@
 
 .SettingsControl
 {
-	display: inline;
+	display: inline-block;
 }
 
 /* --------------------- */
@@ -316,7 +316,7 @@
 	position: absolute;
 	top: 0;
 	left: 4.17em;
-	/*right: 1em;*/
+	right: 0;
 }
 
 .IngredientQuantity
@@ -358,14 +358,14 @@
 {
 }
 
-.EditorLabel
+.SettingsLabel
 {
 	display: inline-block;
 	width: 40%;
 	margin-left: 0.5em;
 }
 
-.EditorControl
+.SettingsControl
 {
 	display: inline-block;
 	width: 40%;
@@ -393,8 +393,19 @@
 	height: 1em;
 }
 
+#EditorGlassImage
+{
+	height: 3em;
+}
+
+.EditorGlass
+{
+	top: 3.05em;
+}
+
 .EditorIngredientRigth
 {
+	position: relative;
 	margin-right: 1em;
 }
 
@@ -403,5 +414,38 @@
 	font-size: 1em;
 	height: 100%;
 	width: 100%;
+}
+
+.EditorControl
+{
+	vertical-align: text-top;
+}
+
+.EditorSplit
+{
+	height: 0.5em;
+}
+
+.EditorIngredientImage
+{
+	padding-left: 0.5em;
+	font-size: 1em;
+	height: 6.8em;
+}
+
+.EditorIngredientQuantity
+{
+	font-size: 4.0em;
+	position: absolute;
+	left: 1.25em;
+	right: 0;
+	bottom: 0;
+}
+
+.EditorIngredientUnitMeasure
+{
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 

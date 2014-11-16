@@ -654,8 +654,8 @@ function Book()
 	var _showSettings = function()
 	{
 		var text = '<div class="applicationTitle">Settings</div>';
-		text += '<div class="EditorGroup"><div class="EditorLabel">Principal unit measure: </div>';
-		text += '<select class="EditorControl" onChange="Book.setUnitMeasure(this.value);">';
+		text += '<div class="EditorGroup"><div class="SettingsLabel">Principal unit measure: </div>';
+		text += '<select class="SettingsControl" onChange="Book.setUnitMeasure(this.value);">';
 
 		if(_conversionType != CONVERSION_TYPE.CL)
 		{
@@ -838,59 +838,20 @@ function Book()
 	var _showEditor = function()
 	{
 		var text = '<div class="Cocktail">';
+		text += '<div class="EditorSplit"></div>';
 		text +=  '<input type="hidden" id="EditorId" value="' + _currentCocktail.Id() + '"></input>';
 		text +=  '<div class="CocktailName"><input class="EditorIngredientControl" id="EditorDescription" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Description()) + '"></input></div>';
-		text +=  '<div><div class="Label">Classification: </div><select id="EditorClassification">';
-		for(var i = 0; i < CLASSIFICATION.length; i++)
-		{
-			text +=  '<option value="' + CLASSIFICATION[i] + '"';
-			if(CLASSIFICATION[i] == _currentCocktail.Classification())
-			{
-				text += ' selected';
-			}
-			text +=  '>' + CLASSIFICATION[i] + '</option>';
-		}
-		text += '</select></div>';
-		text +=  '<div><div class="Label">AlcoholicLevel: </div><select id="EditorAlcoholicLevel">';
-		for(var i = 0; i < ALCOHOLIC_LEVELS.length; i++)
-		{
-			text +=  '<option value="' + ALCOHOLIC_LEVELS[i] + '"';
-			if(ALCOHOLIC_LEVELS[i] == _currentCocktail.AlcoholicLevel())
-			{
-				text += ' selected';
-			}
-			text +=  '>' + ALCOHOLIC_LEVELS[i] + '</option>';
-		}
-		text += '</select></div>';
-		
-		text +=  '<div class="Glass">';
-		text +=   '<img class="GlassImage" id="EditorGlassImage" src="' + IMAGE_DIRECTORY + '/' + _getGlassImage(_currentCocktail.Glass()) + '"/>';
-		text +=   '<div class="GlassName"><select id="EditorGlass" onChange="Book.setEditorGlassImage(this.value);">';
-		for(var glassId in GLASSES)
-		{
-			text +=  '<option value="' + glassId + '"';
-			if(glassId == _currentCocktail.Glass())
-			{
-				text += ' selected';
-			}
-			text +=  '>' + GLASSES[glassId].Description + '</option>';
-		}
-		text += '</select></div>';
-		text +=  '</div>';
 
-		text += '<div><div class="Label">Technique: </div><select id="EditorTechnique">';
-		for(var i = 0; i < TECHNIQUES.length; i++)
-		{
-			text +=  '<option value="' + TECHNIQUES[i] + '"';
-			if(TECHNIQUES[i] == _currentCocktail.Technique())
-			{
-				text += ' selected';
-			}
-			text +=  '>' + TECHNIQUES[i] + '</option>';
-		}
-		text += '</select></div>';
-		text += '<div><div class="Label">Garnish: </div><input id="EditorGarnish" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Garnish()) + '"></input></div>';
-		text += '<div><div class="Label">Variant of: </div>';
+		text += '<div>';
+		text += '<div class="SettingsControl">';
+		text +=  '<div>Variant of: </div>';
+		text +=  '<div>Classification: </div>';
+		text +=  '<div>AlcoholicLevel: </div>';
+		text +=  '<div>Technique: </div>';
+		text +=  '<div>Garnish: </div>';
+		text += '</div>';
+		text += '<div class="SettingsControl">';
+
 		if(_currentCocktail.Id())
 		{
 			text += '<input type="hidden" id="EditorVariantOf"  value="' + _currentCocktail.getBaseCocktail() + '" />';
@@ -905,7 +866,7 @@ function Book()
 		}
 		else
 		{
-			text += '<select id="EditorVariantOf">';
+			text += '<select class="EditorControl" id="EditorVariantOf">';
 			text +=  '<option value=""></option>';
 			for(var i = 0; i < _cocktails.length; i++)
 			{
@@ -918,7 +879,64 @@ function Book()
 			}
 			text += '</select>';
 		}
+
+		text +=  '<select class="EditorControl" id="EditorClassification">';
+		for(var i = 0; i < CLASSIFICATION.length; i++)
+		{
+			text +=  '<option value="' + CLASSIFICATION[i] + '"';
+			if(CLASSIFICATION[i] == _currentCocktail.Classification())
+			{
+				text += ' selected';
+			}
+			text +=  '>' + CLASSIFICATION[i] + '</option>';
+		}
+		text +=  '</select>';
+
+		text +=  '<select class="EditorControl" id="EditorAlcoholicLevel">';
+		for(var i = 0; i < ALCOHOLIC_LEVELS.length; i++)
+		{
+			text +=  '<option value="' + ALCOHOLIC_LEVELS[i] + '"';
+			if(ALCOHOLIC_LEVELS[i] == _currentCocktail.AlcoholicLevel())
+			{
+				text += ' selected';
+			}
+			text +=  '>' + ALCOHOLIC_LEVELS[i] + '</option>';
+		}
+		text +=  '</select>';
+
+		text +=  '<select class="EditorControl" id="EditorTechnique">';
+		for(var i = 0; i < TECHNIQUES.length; i++)
+		{
+			text +=  '<option value="' + TECHNIQUES[i] + '"';
+			if(TECHNIQUES[i] == _currentCocktail.Technique())
+			{
+				text += ' selected';
+			}
+			text +=  '>' + TECHNIQUES[i] + '</option>';
+		}
+		text +=  '</select>';
+
+		text +=  '<input class="EditorControl" id="EditorGarnish" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Garnish()) + '"></input>';
+
+		text +=  '</div>';
+
 		text += '</div>';
+
+		text +=  '<div class="Glass EditorGlass">';
+		text +=   '<img class="GlassImage" id="EditorGlassImage" src="' + IMAGE_DIRECTORY + '/' + _getGlassImage(_currentCocktail.Glass()) + '"/>';
+		text +=   '<div class="GlassName"><select id="EditorGlass" onChange="Book.setEditorGlassImage(this.value);">';
+		for(var glassId in GLASSES)
+		{
+			text +=  '<option value="' + glassId + '"';
+			if(glassId == _currentCocktail.Glass())
+			{
+				text += ' selected';
+			}
+			text +=  '>' + GLASSES[glassId].Description + '</option>';
+		}
+		text += '</select></div>';
+		text +=  '</div>';
+
 		text += '<div><textarea class="EditorIngredientControl" id="EditorInfo" onkeydown="Book.validateInputString(event)">' + _escapeToString(_currentCocktail.Info()) + '</textarea></div>';
 		text += '<div>Ingredients:</div>';
 		text += '</div>';
@@ -1056,8 +1074,8 @@ function Book()
 		text += '>';
 		text += '<div class="Ingredient">';
 		text += '<div class="EditorSeparator"></div>';
-		text +=  '<div class="Ingredient EditorIngredientRigth">';
-		text +=   '<div class="IngredientImage"><img id="EditorIngredientImage_' + _EditorIngredientId + '" clas="IngredientImg" src="' + IMAGE_DIRECTORY + '/' + _getIngredientImage(ingredientId) + '" /></div>';
+		text +=  '<div class="EditorIngredientRigth">';
+		text +=   '<div class="EditorIngredientImage"><img id="EditorIngredientImage_' + _EditorIngredientId + '" class="IngredientImg" src="' + IMAGE_DIRECTORY + '/' + _getIngredientImage(ingredientId) + '" /></div>';
 		text +=   '<div class="IngredientName"><select class="EditorIngredientControl" id="EditorIngredient_' + _EditorIngredientId + '_Id" onChange="Book.setEditorIngredientImage(' + _EditorIngredientId + ', this.value);">';
 		text +=   '<option value=""></option>';
 		for(var id in INGREDIENTS)
@@ -1070,9 +1088,15 @@ function Book()
 			text +=  '>' + INGREDIENTS[id].Description + '</option>';
 		}
 		text +=  '</select></div>';
-		text +=  '<div class="IngredientQuantity"><input class="EditorIngredientControl" id="EditorIngredient_' + _EditorIngredientId + '_Quantity" value="' + ingredient.Quantity
-													+ '" onkeydown="Book.validateInputNumber(event, \'EditorIngredient_' + _EditorIngredientId + '_Quantity\')"></input></div>';
-		text +=  '<div class="IngredientUnitMeasure"><select id="EditorIngredient_' + _EditorIngredientId + '_UnitMeasure">';
+
+		var quantity = ingredient.Quantity;
+		if(quantity == 0)
+		{
+			quantity = "";
+		}
+		text +=  '<div class="EditorIngredientQuantity"><input class="EditorIngredientControl" id="EditorIngredient_' + _EditorIngredientId + '_Quantity" value="' + quantity +
+				'" onkeydown="Book.validateInputNumber(event, \'EditorIngredient_' + _EditorIngredientId + '_Quantity\')"></input></div>';
+		text +=  '<div class="EditorIngredientUnitMeasure"><select id="EditorIngredient_' + _EditorIngredientId + '_UnitMeasure">';
 		for(var unitId in UNIT_MEASURE)
 		{
 			text +=  '<option value="' + UNIT_MEASURE[unitId] + '"';
