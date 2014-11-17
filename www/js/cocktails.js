@@ -687,10 +687,10 @@ function Book()
 		text += '</select></div>';
 
 		text += '<div class="Credits"><div class="applicationTitle">Credits</div>';
-		text += '<img class="CreditsImage" src="img/OpenSource.svg" />';
-		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div><br/>';
 		text += '<img class="CreditsPhoto" src="img/credits.jpg" />';
 		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div></div>';
+		text += '<img class="CreditsImage" src="img/OpenSource.svg" />';
+		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div><br/>';
 		text += '</div>';
 
 		text += '</div>';
@@ -840,7 +840,7 @@ function Book()
 		var text = '<div class="Cocktail">';
 		text += '<div class="EditorSplit"></div>';
 		text +=  '<input type="hidden" id="EditorId" value="' + _currentCocktail.Id() + '"></input>';
-		text +=  '<div class="CocktailName"><input class="EditorIngredientControl" id="EditorDescription" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Description()) + '"></input></div>';
+		text +=  '<div class="CocktailName"><input class="EditorIngredientControl" id="EditorDescription" onkeyup="Book.validateInputString(\'EditorDescription\')" value="' + _escapeToString(_currentCocktail.Description()) + '"></input></div>';
 
 		text += '<div>';
 		text += '<div class="SettingsControl">';
@@ -916,7 +916,7 @@ function Book()
 		}
 		text +=  '</select>';
 
-		text +=  '<input class="EditorControl" id="EditorGarnish" onkeydown="Book.validateInputString(event)" value="' + _escapeToString(_currentCocktail.Garnish()) + '"></input>';
+		text +=  '<input class="EditorControl" id="EditorGarnish" onkeyup="Book.validateInputString(\'EditorGarnish\')" value="' + _escapeToString(_currentCocktail.Garnish()) + '"></input>';
 
 		text +=  '</div>';
 
@@ -937,7 +937,7 @@ function Book()
 		text += '</select></div>';
 		text +=  '</div>';
 
-		text += '<div><textarea class="EditorIngredientControl" id="EditorInfo" onkeydown="Book.validateInputString(event)">' + _escapeToString(_currentCocktail.Info()) + '</textarea></div>';
+		text += '<div><textarea class="EditorIngredientControl" id="EditorInfo" onkeyup="Book.validateInputString(\'EditorInfo\')">' + _escapeToString(_currentCocktail.Info()) + '</textarea></div>';
 		text += '<div>Ingredients:</div>';
 		text += '</div>';
 
@@ -978,67 +978,38 @@ function Book()
 		$("#EditorIngredientImage_" + id).attr("src", IMAGE_DIRECTORY + '/' + _getIngredientImage(value));
 	}
 
-	var _validateInputNumber = function(e, id)
+	var _validateInputNumber = function(id)
 	{
-		// Allow: "." if not presents
-		if ((e.keyCode == 110) || (e.keyCode == 190))
+		var editor = $("#" + id)[0];
+		var key = editor.value[editor.value.length - 1];
+		if(key == '.')
 		{
-			if($("#" + id)[0].value.indexOf(".") == -1)
+			if(editor.value.indexOf(".") == editor.value.length - 1)
 			{
 				return;
 			}
-			e.preventDefault();
 		}
-		// Allow: backspace, delete, tab, escape, enter
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13]) !== -1 ||
-             // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) || 
-             // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39))
+		else if($.inArray(key, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']) > -1)
 		{
-                 // let it happen, don't do anything
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105))
-		{
-            e.preventDefault();
-        }
+			return;
+		}
+		editor.value = editor.value.substring(0, editor.value.length - 1);
 	}
 
-	var _validateInputString = function(e)
+	var _validateInputString = function(id)
 	{
-		// Allow: backspace, delete, tab, escape, enter, shift, AltGr, Alt
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 16, 17, 18]) !== -1 ||
-             // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) || 
-             // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39))
-		{
-                 // let it happen, don't do anything
-                 return;
-        }
-		if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode >= 65 && e.keyCode <= 90))
-		{
-            return;
-        }
-		// gestione caratteri speciali
-		var character = String.fromCharCode(e.keyCode);
-		//*, -, '.', ',', ':', ';', '-', '+', ?
-		if((e.keyCode === 222 && e.shiftKey === true)
-			|| ($.inArray(e.keyCode, [106, 107, 109, 110, 111, 171, 173, 188, 190]) !== -1)
-			|| ($.inArray(character, [' ', '=', '(', ')', '!', '%']) !== -1))
+		var editor = $("#" + id)[0];
+		var key = editor.value[editor.value.length - 1];
+		var cc = key.charCodeAt(0);
+		if((cc>47 && cc<58) || (cc>64 && cc<91) || (cc>96 && cc<123))
+        {
+			return;
+		}
+		else if($.inArray(key, ['*', '-', '+', '/', ',', '.', ';', ':', ' ', '=', '(', ')', '?', '!', '%', '\'', '"', '&', '<', '>']) > -1)
 		{
 			return;
 		}
-		// gestione caratteri speciali escape
-		// ' => 222
-		if((e.keyCode === 222 && e.shiftKey === false)
-			|| ($.inArray(character, ['&', '<', '>', '"']) !== -1))
-		{
-			return;
-		}
-		e.preventDefault();
+		editor.value = editor.value.substring(0, editor.value.length - 1);
 	}
 	
 	var _escapeToString = function(value)
@@ -1095,7 +1066,7 @@ function Book()
 			quantity = "";
 		}
 		text +=  '<div class="EditorIngredientQuantity"><input class="EditorIngredientControl" id="EditorIngredient_' + _EditorIngredientId + '_Quantity" value="' + quantity +
-				'" onkeydown="Book.validateInputNumber(event, \'EditorIngredient_' + _EditorIngredientId + '_Quantity\')"></input></div>';
+				'" onkeyup="Book.validateInputNumber(\'EditorIngredient_' + _EditorIngredientId + '_Quantity\')"></input></div>';
 		text +=  '<div class="EditorIngredientUnitMeasure"><select id="EditorIngredient_' + _EditorIngredientId + '_UnitMeasure">';
 		for(var unitId in UNIT_MEASURE)
 		{
