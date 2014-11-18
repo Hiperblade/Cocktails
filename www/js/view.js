@@ -85,7 +85,7 @@ function ViewConstructor()
 		_setHtml('#mainPage', text);
 		_showListInternal();
 		
-		$(window).scrollTop(_lastScrollPosition);
+		System.setScrollTop(_lastScrollPosition);
 	}
 
 	var _showListInternal = function()
@@ -311,15 +311,16 @@ function ViewConstructor()
 			text += '</div>';
 			_setHtml('#mainPage', text);
 			
-			$(window).scrollTop(0);
+			System.setScrollTop(0);
 		}
 	}
 
 	var _setCurrentCocktail = function(id)
 	{
+		var oldPosition = System.getScrollTop();
 		if(Controller.setCurrentCocktail(id))
 		{
-			_lastScrollPosition = $(window).scrollTop();
+			_lastScrollPosition = oldPosition;
 		}
 	}
 	
@@ -368,7 +369,7 @@ function ViewConstructor()
 		text += '</div>';
 		_setHtml('#mainPage', text);
 		
-		$(window).scrollTop(0);
+		System.setScrollTop(0);
 	};
 
 	var _showEditor = function(cocktail)
@@ -493,7 +494,7 @@ function ViewConstructor()
 		text += '</div>';
 		_setHtml('#mainPage', text);
 		
-		$(window).scrollTop(0);
+		System.setScrollTop(0);
 	}
 
 	var _appendEditorIngredient = function()

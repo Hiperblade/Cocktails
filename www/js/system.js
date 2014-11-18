@@ -263,6 +263,19 @@ function SystemConstructor()
 		});
 	};
 
+	var _setScrollTop = function(position)
+	{
+		$(window).scrollTop(position);
+	};
+	
+	var _getScrollTop = function()
+	{
+		return $(window).scrollTop();
+	};
+	
+	this.setScrollTop = _setScrollTop;
+	this.getScrollTop = _getScrollTop;
+	
 	this.getTextFile = function(filename, callback) { return _getFile(filename, "text", callback); };
 	this.getXmlFile = function(filename, callback) { return _getFile(filename, "xml", callback); };
 	this.getJsonFile = function(filename, callback) { return _getFile(filename, "json", callback); };

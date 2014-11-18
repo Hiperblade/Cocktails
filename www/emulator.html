@@ -299,6 +299,16 @@
 
 				System.addFile = _addFile;
 				
+				System.setScrollTop = function(position)
+				{
+					$(".emulatorArea").scrollTop(position);
+				}
+				
+				System.getScrollTop = function()
+				{
+					return $(".emulatorArea").scrollTop();
+				}
+				
 				CordovaApp.currentOrientation = function()
 				{
 					if(currentWidth > currentHeight)
@@ -326,7 +336,7 @@
 
 			.area
 			{
-		height: 100%;
+				height: 100%;
 				margin: 0;
 			}
 
