@@ -12,19 +12,19 @@
 						//System.createDirectory("cocktails");
 						//System.addFile("cocktails/iba2.xml", '');
 						//Book.setImageDirectory("file:///home/hiperblade/Documents/Cordova/cocktails/www/img");
-						Book.start();
+						View.start();
 						updateSize();
 					});
 			}
 
 			function showMenu()
 			{
-				Book.showMenu();
+				View.showMenu();
 			}
 
 			function backMenu()
 			{
-				if(!Book.backMenu())
+				if(!View.backMenu())
 				{
 					$('#emulator').html('<button class="startButton" style="left: ' + (currentWidth/2) + 'px; top: ' + (currentHeight/2) + 'px;" onclick="start();">Start</button>');
 				}
@@ -284,8 +284,19 @@
 				{
 					return true;
 				};
+				
+				System.createIfNotExists = function(baseDirectory, fileName, callback)
+				{
+					System.existFile(baseDirectory + "/" + fileName, callback, function() {
+						System.createDirectory(baseDirectory, function() {
+							System.getTextFile(fileName, function(xml){
+								System.writeFile(baseDirectory + "/" + fileName, xml, callback);
+							});
+						});
+					});
+				};
 
-		System.addFile = _addFile;
+				System.addFile = _addFile;
 			}
 		</script>
 		<style>

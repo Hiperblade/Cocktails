@@ -251,10 +251,22 @@ function SystemConstructor()
 	{
 		$.ajax({ type: "GET", url: filename, dataType: dataType, success: callback });
 	};
+	
+	var _createIfNotExists = function(baseDirectory, fileName, callback)
+	{
+		_existFile(baseDirectory + "/" + fileName, callback, function() {
+			_createDirectory(baseDirectory, function() {
+				_getTextFile(fileName, function(xml){
+					_writeFile(baseDirectory + "/" + fileName, xml, callback);
+				});
+			});
+		});
+	};
 
 	this.getTextFile = function(filename, callback) { return _getFile(filename, "text", callback); };
 	this.getXmlFile = function(filename, callback) { return _getFile(filename, "xml", callback); };
 	this.getJsonFile = function(filename, callback) { return _getFile(filename, "json", callback); };
+	this.createIfNotExists = _createIfNotExists;
 
 	this.supportFileSystem = _supportFileSystem;
 	this.initialize = _initialize;

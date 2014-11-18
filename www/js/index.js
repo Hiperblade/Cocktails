@@ -14,18 +14,18 @@ function CordovaAppConstructor()
 		document.addEventListener("backbutton", _onBackButton, false);
 		window.addEventListener("orientationchange", _onOrientationChange);
 
-		System.initialize(function(){ Book.start(); });
+		System.initialize(function(){ View.start(); });
 	};
 
 	var _onMenuButton = function()
 	{
-		Book.showMenu();
+		View.showMenu();
 	};
 
 	var _onBackButton = function()
 	{
 		// nascondo il menù se è aperto o sospendo il libro se è aperto
-		if(!Book.backMenu())
+		if(!View.backMenu())
 		{
 			// esco dall'applicazione
 			navigator.app.exitApp();
@@ -34,7 +34,7 @@ function CordovaAppConstructor()
 
 	var _onOrientationChange = function()
 	{
-		Book.onOrientationChange();
+		View.onOrientationChange();
 	};
 
 	this.initialize = _initialize;
