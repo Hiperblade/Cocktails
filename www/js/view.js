@@ -363,7 +363,7 @@ function ViewConstructor()
 		text += '<div><img class="CreditsPhoto" src="img/credits.jpg" />';
 		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div></div></div>';
 		text += '<div><img class="CreditsImage" src="img/OpenSource.svg" />';
-		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div></div>';
+		text += '<div class="CreditsInfo"><div>Open Source code on GitHub</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div></div>';
 		text += '<div><img class="CreditsImage" src="img/IBA.png" />';
 		text += '<div class="CreditsInfo"><div>International Bartenders Association</div><div><a href="http://www.iba-world.com/">http://www.iba-world.com/</a></div></div></div>';
 		text += '</div>';
