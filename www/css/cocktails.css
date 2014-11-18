@@ -125,13 +125,6 @@
 
 /* --------------------- */
 
-.SettingsControl
-{
-	display: inline-block;
-}
-
-/* --------------------- */
-
 .Filter
 {
 	position: relative;
@@ -225,8 +218,8 @@
 .Cocktail
 {
 	position: relative;
-	padding-left: 1em;
-	padding-right: 1em;
+	margin-left: 1em;
+	margin-right: 1em;
 }
 
 .CocktailInfo
@@ -234,10 +227,36 @@
 	text-align: justify;
 }
 
+.CocktailNameBox
+{
+	position: relative;
+	height: 1.8em;
+}
+
 .CocktailName
 {
+	position: absolute;
+	Left: 0;
+	Right: 0;
 	font-size: 1.5em;
 	font-weight: bold;
+	display: inline-block;
+}
+
+.CocktailVariant
+{
+	position: absolute;
+	Top: 0.1em;
+	Right: 0;
+	width: 1.5em;
+	height: 1.5em;
+	background-color: darkgray;
+}
+
+.CocktailVariantIcon
+{
+	width: 100%;
+	height: 100%;
 }
 
 .Iba
@@ -251,7 +270,7 @@
 {
 	position: absolute;
 	top: 1.8em;
-	right: 2%;
+	right: 0;
 	text-align: center;
 }
 
@@ -356,19 +375,20 @@
 
 .EditorGroup
 {
+	margin-left: 1em; 
+	margin-right: 1em; 
 }
 
 .SettingsLabel
 {
 	display: inline-block;
 	width: 40%;
-	margin-left: 0.5em;
 }
 
 .SettingsControl
 {
 	display: inline-block;
-	width: 40%;
+	width: 60%;
 }
 
 .EditorButton
@@ -396,6 +416,17 @@
 #EditorGlassImage
 {
 	height: 3em;
+}
+
+#EditorGarnish
+{
+	width: 100%;
+}
+
+.EditorCocktailName
+{
+	font-size: 1.5em;
+	font-weight: bold;
 }
 
 .EditorGlass

@@ -102,7 +102,7 @@ function ViewConstructor()
 			$("#applicationTitle").html("" + cocktailsList.length + " Cocktails");
 			for(var i = 0; i < cocktailsList.length; i++)
 			{
-				text += '<div class="Element" onclick="Controller.setCurrentCocktail(\'' + cocktailsList[i].Id() + '\');">';
+				text += '<div class="Element" onclick="View.setCurrentCocktail(\'' + cocktailsList[i].Id() + '\');">';
 				text +=  '<div class="ElementName">' + cocktailsList[i].Description();
 				if(cocktailsList[i].Iba())
 				{
@@ -250,6 +250,7 @@ function ViewConstructor()
 			var text = '<div class="Container">';
 			//
 			text += '<div class="Cocktail">';
+			text +=  '<div class="CocktailNameBox">';
 			text +=  '<div class="CocktailName" onClick="View.backMenu()">' + cocktail.Description();
 			if(cocktail.Iba())
 			{
@@ -260,6 +261,13 @@ function ViewConstructor()
 				text += '<div class="Iba"> (*)</div>';
 			}
 			text +=  '</div>';
+			var nextVariant = Controller.getNextVariantOf(cocktail.getBaseCocktail(), cocktail.Id());
+			if(nextVariant)
+			{
+				text += '<div class="CocktailVariant" onClick="Controller.setCurrentCocktail(\'' + nextVariant + '\')"><img class="CocktailVariantIcon" src="img/edit.svg"><img>' + '' + '</div>';
+			}
+			text +=  '</div>';
+			
 			text +=  '<div><div class="Label">Classification: </div><div class="Value">' + cocktail.Classification() + '</div></div>';
 			text +=  '<div><div class="Label">AlcoholicLevel: </div><div class="Value">' + cocktail.AlcoholicLevel() + '</div></div>';
 			text +=  '<div class="Glass">';
@@ -268,11 +276,7 @@ function ViewConstructor()
 			text +=  '</div>';
 			text +=  '<div><div class="Label">Technique: </div><div class="Value">' + cocktail.Technique() + '</div></div>';
 			text +=  '<div><div class="Label">Garnish: </div><div class="Value">' + cocktail.Garnish() + '</div></div>';
-			var nextVariant = Controller.getNextVariantOf(cocktail.getBaseCocktail(), cocktail.Id());
-			if(nextVariant)
-			{
-				text += '<div class="EditorButton" onClick="Controller.setCurrentCocktail(\'' + nextVariant + '\')"><img class="EditorButtonImage" src="img/edit.svg"><img>' + '>>>' + '</div>';
-			}
+			
 			text +=  '<div class="CocktailInfo">' + cocktail.Info() + '</div>';
 			text +=  '<div>Ingredients:</div>';
 			text += '</div>';
@@ -311,6 +315,14 @@ function ViewConstructor()
 		}
 	}
 
+	var _setCurrentCocktail = function(id)
+	{
+		if(Controller.setCurrentCocktail(id))
+		{
+			_lastScrollPosition = $(window).scrollTop();
+		}
+	}
+	
 	var _showSettings = function(settings)
 	{
 		var text = '<div class="applicationTitle">Settings</div>';
@@ -347,10 +359,10 @@ function ViewConstructor()
 		text += '</select></div>';
 
 		text += '<div class="Credits"><div class="applicationTitle">Credits</div>';
-		text += '<img class="CreditsPhoto" src="img/credits.jpg" />';
-		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div></div>';
-		text += '<img class="CreditsImage" src="img/OpenSource.svg" />';
-		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div><br/>';
+		text += '<div><img class="CreditsPhoto" src="img/credits.jpg" />';
+		text += '<div class="CreditsInfo"><div>Giorgio Amadei</div><div><a href="http://cronacheartificiali.blogspot.it">cronacheartificiali.blogspot.it</a></div></div></div>';
+		text += '<div><img class="CreditsImage" src="img/OpenSource.svg" />';
+		text += '<div class="CreditsInfo"><div>Open Source code:</div><div><a href="https://github.com/Hiperblade/Cocktails">github.com/Hiperblade/Cocktails</a></div></div></div>';
 		text += '</div>';
 
 		text += '</div>';
@@ -364,10 +376,10 @@ function ViewConstructor()
 		var text = '<div class="Cocktail">';
 		text += '<div class="EditorSplit"></div>';
 		text +=  '<input type="hidden" id="EditorId" value="' + cocktail.Id() + '"></input>';
-		text +=  '<div class="CocktailName"><input class="EditorIngredientControl" id="EditorDescription" onkeyup="View.validateInputString(\'EditorDescription\')" value="' + _escapeToString(cocktail.Description()) + '"></input></div>';
+		text +=  '<div class="EditorCocktailName"><input class="EditorIngredientControl" id="EditorDescription" onkeyup="View.validateInputString(\'EditorDescription\')" value="' + _escapeToString(cocktail.Description()) + '"></input></div>';
 
 		text += '<div>';
-		text += '<div class="SettingsControl">';
+		text += '<div class="SettingsLabel">';
 		text +=  '<div>Variant of: </div>';
 		text +=  '<div>Classification: </div>';
 		text +=  '<div>AlcoholicLevel: </div>';
@@ -379,7 +391,7 @@ function ViewConstructor()
 		var data = Controller.getData();
 		if(cocktail.Id())
 		{
-			text += '<input type="hidden" id="EditorVariantOf"  value="' + cocktail.getBaseCocktail() + '" />';
+			text += '<div><input class="EditorControl" type="hidden" id="EditorVariantOf"  value="' + cocktail.getBaseCocktail() + '" />';
 			for(var i = 0; i < data.Cocktails.length; i++)
 			{
 				if(data.Cocktails[i].Id() == cocktail.getBaseCocktail())
@@ -388,10 +400,11 @@ function ViewConstructor()
 					break;
 				}
 			}
+			text += '</div>';
 		}
 		else
 		{
-			text += '<select class="EditorControl" id="EditorVariantOf">';
+			text += '<div><select class="EditorControl" id="EditorVariantOf">';
 			text +=  '<option value=""></option>';
 			for(var i = 0; i < data.Cocktails.length; i++)
 			{
@@ -402,10 +415,10 @@ function ViewConstructor()
 				}
 				text +=  '>' + data.Cocktails[i].Description() + '</option>';
 			}
-			text += '</select>';
+			text += '</select></div>';
 		}
 
-		text +=  '<select class="EditorControl" id="EditorClassification">';
+		text +=  '<div><select class="EditorControl" id="EditorClassification">';
 		for(var i = 0; i < CLASSIFICATION.length; i++)
 		{
 			text +=  '<option value="' + CLASSIFICATION[i] + '"';
@@ -415,9 +428,9 @@ function ViewConstructor()
 			}
 			text +=  '>' + CLASSIFICATION[i] + '</option>';
 		}
-		text +=  '</select>';
+		text +=  '</select></div>';
 
-		text +=  '<select class="EditorControl" id="EditorAlcoholicLevel">';
+		text +=  '<div><select class="EditorControl" id="EditorAlcoholicLevel">';
 		for(var i = 0; i < ALCOHOLIC_LEVELS.length; i++)
 		{
 			text +=  '<option value="' + ALCOHOLIC_LEVELS[i] + '"';
@@ -427,9 +440,9 @@ function ViewConstructor()
 			}
 			text +=  '>' + ALCOHOLIC_LEVELS[i] + '</option>';
 		}
-		text +=  '</select>';
+		text +=  '</select></div>';
 
-		text +=  '<select class="EditorControl" id="EditorTechnique">';
+		text +=  '<div><select class="EditorControl" id="EditorTechnique">';
 		for(var i = 0; i < TECHNIQUES.length; i++)
 		{
 			text +=  '<option value="' + TECHNIQUES[i] + '"';
@@ -439,9 +452,9 @@ function ViewConstructor()
 			}
 			text +=  '>' + TECHNIQUES[i] + '</option>';
 		}
-		text +=  '</select>';
+		text +=  '</select></div>';
 
-		text +=  '<input class="EditorControl" id="EditorGarnish" onkeyup="View.validateInputString(\'EditorGarnish\')" value="' + _escapeToString(cocktail.Garnish()) + '"></input>';
+		text +=  '<div><input class="EditorControl" id="EditorGarnish" onkeyup="View.validateInputString(\'EditorGarnish\')" value="' + _escapeToString(cocktail.Garnish()) + '"></input></div>';
 
 		text +=  '</div>';
 
@@ -724,16 +737,13 @@ function ViewConstructor()
 	var _onOrientationChange = function()
 	{
 		var landscape = (CordovaApp.currentOrientation() == ScreenOrientation.LANDSCAPE);
-		for(var ingredient in $('.Ingredient'))
+		if(landscape)
 		{
-			if(landscape)
-			{
-				ingredient.addClass('IngredientLandScape');
-			}
-			else
-			{
-				ingredient.removeClass('IngredientLandScape');
-			}
+			$('.Ingredient').addClass('IngredientLandScape');
+		}
+		else
+		{
+			$('.Ingredient').removeClass('IngredientLandScape');
 		}
 	}
 
@@ -745,6 +755,7 @@ function ViewConstructor()
 	this.resetFilter = _resetFilter;
 	// cocktail
 	this.showCocktail = _showCocktail;
+	this.setCurrentCocktail = _setCurrentCocktail;
 	// settings
 	this.showSettings = _showSettings;
 	// editor

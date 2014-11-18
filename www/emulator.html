@@ -49,6 +49,7 @@
 			function rotate()
 			{
 				setSize(currentHeight, currentWidth);
+				View.onOrientationChange();
 			}
 
 			function setSize(width, height)
@@ -297,6 +298,15 @@
 				};
 
 				System.addFile = _addFile;
+				
+				CordovaApp.currentOrientation = function()
+				{
+					if(currentWidth > currentHeight)
+					{
+						return ScreenOrientation.LANDSCAPE;
+					}
+					return ScreenOrientation.PORTRAIT;
+				};
 			}
 		</script>
 		<style>

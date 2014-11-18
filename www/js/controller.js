@@ -74,13 +74,14 @@ function ControllerConstructor()
 			{
 				if(data.Cocktails[i].Id() == id)
 				{
+					var ret = false;
 					if(_currentCocktail == null)
 					{
-						_lastScrollPosition = $(window).scrollTop();
+						ret = true;
 					}
 					_currentCocktail = data.Cocktails[i];
 					View.showCocktail(_currentCocktail);
-					break;
+					return ret;
 				}
 			}
 		}
