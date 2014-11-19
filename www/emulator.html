@@ -9,22 +9,32 @@
 				$('#emulator').load('index.html', function()
 					{
 						initialize();
-						//System.createDirectory("cocktails");
-						//System.addFile("cocktails/iba2.xml", '');
-						//Book.setImageDirectory("file:///home/hiperblade/Documents/Cordova/cocktails/www/img");
-						View.start();
+						if(CordovaApp.onInitialize)
+						{
+							CordovaApp.onInitialize();
+						}
 						updateSize();
 					});
 			}
 
 			function showMenu()
 			{
-				View.showMenu();
+				if(CordovaApp.onMenuButton)
+				{
+					CordovaApp.onMenuButton();
+				}
 			}
 
 			function backMenu()
 			{
-				if(!View.backMenu())
+				if(CordovaApp.onBackButton)
+				{
+					if(!CordovaApp.onBackButton())
+					{
+						$('#emulator').html('<button class="startButton" style="left: ' + (currentWidth/2) + 'px; top: ' + (currentHeight/2) + 'px;" onclick="start();">Start</button>');
+					}
+				}
+				else
 				{
 					$('#emulator').html('<button class="startButton" style="left: ' + (currentWidth/2) + 'px; top: ' + (currentHeight/2) + 'px;" onclick="start();">Start</button>');
 				}
@@ -49,7 +59,10 @@
 			function rotate()
 			{
 				setSize(currentHeight, currentWidth);
-				View.onOrientationChange();
+				if(CordovaApp.onOrientationChange)
+				{
+					CordovaApp.onOrientationChange();
+				}
 			}
 
 			function setSize(width, height)

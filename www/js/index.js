@@ -14,8 +14,8 @@ function CordovaAppConstructor()
 		document.addEventListener("backbutton", _onBackButton, false);
 		window.addEventListener("orientationchange", _onOrientationChange);
 
-		$('#mainPage').bind('swipeleft', _onSwipeLeft);
-		$('#mainPage').bind('swiperight', _onSwipeRight);
+		//$('#mainPage').bind('swipeleft', _onSwipeLeft);
+		//$('#mainPage').bind('swiperight', _onSwipeRight);
 		
 		System.initialize(function()
 		{
@@ -36,9 +36,9 @@ function CordovaAppConstructor()
 
 	var _onBackButton = function()
 	{
-		if(onBackButton)
+		if(this.onBackButton)
 		{
-			if(!onBackButton())
+			if(!this.onBackButton())
 			{
 				// esco dall'applicazione
 				navigator.app.exitApp();
