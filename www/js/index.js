@@ -85,6 +85,13 @@ function CordovaAppConstructor()
 		}
 		return ScreenOrientation.PORTRAIT;
 	};
+	
+	this.onInitialize = function() { View.start(); };
+	this.onMenuButton = null;
+	this.onBackButton = null;
+	this.onOrientationChange = null;
+	this.onSwipeLeft = null;
+	this.onSwipeRight = null;
 }
 
 CordovaApp = new CordovaAppConstructor();

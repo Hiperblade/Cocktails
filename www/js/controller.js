@@ -243,4 +243,4 @@ CordovaApp.onMenuButton = function() { View.showMenu(); };
 CordovaApp.onBackButton = function() { return View.backMenu(); };
 CordovaApp.onOrientationChange = function() { View.onOrientationChange(); };
 CordovaApp.onSwipeLeft = function() { alert("sinistra"); };
-CordovaApp.onSwipeRight = function() { alert("destra"); };
+CordovaApp.onSwipeRight = function() { alert("sinistra"); };
