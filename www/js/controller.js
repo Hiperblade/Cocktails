@@ -242,5 +242,5 @@ CordovaApp.onInitialize = function() { View.start(); };
 CordovaApp.onMenuButton = function() { View.showMenu(); };
 CordovaApp.onBackButton = function() { return View.backMenu(); };
 CordovaApp.onOrientationChange = function() { View.onOrientationChange(); };
-CordovaApp.onSwipeLeft = function() { alert("sinistra"); };
-CordovaApp.onSwipeRight = function() { alert("sinistra"); };
+/*CordovaApp.onSwipeLeft = function() { alert("sinistra"); };
+CordovaApp.onSwipeRight = function() { alert("sinistra"); };*/

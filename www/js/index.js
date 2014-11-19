@@ -14,8 +14,8 @@ function CordovaAppConstructor()
 		document.addEventListener("backbutton", _onBackButton, false);
 		window.addEventListener("orientationchange", _onOrientationChange);
 
-		$('#mainPage').bind('swipeleft', _onSwipeLeft);
-		$('#mainPage').bind('swiperight', _onSwipeRight);
+		/*$('#mainPage').bind('swipeleft', _onSwipeLeft);
+		$('#mainPage').bind('swiperight', _onSwipeRight);*/
 		
 		System.initialize(function()
 		{
@@ -58,7 +58,7 @@ function CordovaAppConstructor()
 			CordovaApp.onOrientationChange();
 		}
 	};
-
+/*
 	var _onSwipeLeft = function()
 	{
 		if(CordovaApp.onSwipeLeft)
@@ -73,7 +73,7 @@ function CordovaAppConstructor()
 		{
 			CordovaApp.onSwipeRight();
 		}
-	};
+	};*/
 	
 	this.initialize = _initialize;
 	this.currentOrientation = function()
