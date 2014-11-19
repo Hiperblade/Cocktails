@@ -669,11 +669,11 @@ function ViewConstructor()
 					'<div class="menuText">' + menuButtons[i].Text + '</div>' +
 				'</div>';
 			}
-			var bookMenu = $("#bookMenu");
-			bookMenu.html(text);
+			var menu = $("#Menu");
+			menu.html(text);
 	
-			$("#bookMenuBackground").removeClass("hide");
-			bookMenu.removeClass("hide");
+			$("#MenuBackground").removeClass("hide");
+			menu.removeClass("hide");
 	
 			_menuVisible = true;
 		}
@@ -683,8 +683,8 @@ function ViewConstructor()
 	{
 		if(_menuVisible)
 		{
-			$("#bookMenu").addClass("hide");
-			$("#bookMenuBackground").addClass("hide");
+			$("#Menu").addClass("hide");
+			$("#MenuBackground").addClass("hide");
 			_menuVisible = false;
 			return true;
 		}

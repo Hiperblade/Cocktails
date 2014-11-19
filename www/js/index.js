@@ -14,18 +14,37 @@ function CordovaAppConstructor()
 		document.addEventListener("backbutton", _onBackButton, false);
 		window.addEventListener("orientationchange", _onOrientationChange);
 
-		System.initialize(function(){ View.start(); });
+		$('#mainPage').bind('swipeleft', _onSwipeLeft);
+		$('#mainPage').bind('swiperight', _onSwipeRight);
+		
+		System.initialize(function()
+		{
+			if(this.onInitialize)
+			{
+				this.onInitialize();
+			}
+		});
 	};
 
 	var _onMenuButton = function()
 	{
-		View.showMenu();
+		if(this.onMenuButton)
+		{
+			this.onMenuButton();
+		}
 	};
 
 	var _onBackButton = function()
 	{
-		// nascondo il menù se è aperto o sospendo il libro se è aperto
-		if(!View.backMenu())
+		if(onBackButton)
+		{
+			if(!onBackButton())
+			{
+				// esco dall'applicazione
+				navigator.app.exitApp();
+			}
+		}
+		else
 		{
 			// esco dall'applicazione
 			navigator.app.exitApp();
@@ -34,9 +53,28 @@ function CordovaAppConstructor()
 
 	var _onOrientationChange = function()
 	{
-		View.onOrientationChange();
+		if(this.onOrientationChange)
+		{
+			this.onOrientationChange();
+		}
 	};
 
+	var _onSwipeLeft = function()
+	{
+		if(this.onSwipeLeft)
+		{
+			this.onSwipeLeft();
+		}
+	};
+	
+	var _swipeRight = function()
+	{
+		if(this.onSwipeRight)
+		{
+			this.onSwipeRight();
+		}
+	};
+	
 	this.initialize = _initialize;
 	this.currentOrientation = function()
 	{
