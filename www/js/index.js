@@ -19,26 +19,26 @@ function CordovaAppConstructor()
 		
 		System.initialize(function()
 		{
-			if(this.onInitialize)
+			if(CordovaApp.onInitialize)
 			{
-				this.onInitialize();
+				CordovaApp.onInitialize();
 			}
 		});
 	};
 
 	var _onMenuButton = function()
 	{
-		if(this.onMenuButton)
+		if(CordovaApp.onMenuButton)
 		{
-			this.onMenuButton();
+			CordovaApp.onMenuButton();
 		}
 	};
 
 	var _onBackButton = function()
 	{
-		if(this.onBackButton)
+		if(CordovaApp.onBackButton)
 		{
-			if(!this.onBackButton())
+			if(!CordovaApp.onBackButton())
 			{
 				// esco dall'applicazione
 				navigator.app.exitApp();
@@ -53,25 +53,25 @@ function CordovaAppConstructor()
 
 	var _onOrientationChange = function()
 	{
-		if(this.onOrientationChange)
+		if(CordovaApp.onOrientationChange)
 		{
-			this.onOrientationChange();
+			CordovaApp.onOrientationChange();
 		}
 	};
 
 	var _onSwipeLeft = function()
 	{
-		if(this.onSwipeLeft)
+		if(CordovaApp.onSwipeLeft)
 		{
-			this.onSwipeLeft();
+			CordovaApp.onSwipeLeft();
 		}
 	};
 	
 	var _swipeRight = function()
 	{
-		if(this.onSwipeRight)
+		if(CordovaApp.onSwipeRight)
 		{
-			this.onSwipeRight();
+			CordovaApp.onSwipeRight();
 		}
 	};
 	
@@ -85,13 +85,6 @@ function CordovaAppConstructor()
 		}
 		return ScreenOrientation.PORTRAIT;
 	};
-	
-	this.onInitialize = function() { View.start(); };
-	this.onMenuButton = null;
-	this.onBackButton = null;
-	this.onOrientationChange = null;
-	this.onSwipeLeft = null;
-	this.onSwipeRight = null;
 }
 
 CordovaApp = new CordovaAppConstructor();
