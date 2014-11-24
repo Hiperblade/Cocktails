@@ -48,10 +48,61 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 
 function CocktailsData()
 {
-	this.Glasses = {};
-	this.Ingredients = {};
-	this.Cocktails = [];
-	this.Variants = {};
+	var _glasses = {};
+	var _ingredients = {};
+	var _cocktails = [];
+	var _variants = {};
+	
+	var _getCocktail = function(cocktailId)
+	{
+		for(var i = 0; i < _cocktails.length; i++)
+		{
+			if(_cocktails[i].Id() == cocktailId)
+			{
+				return _cocktails[i];
+			}
+		}
+		return null;
+	}
+	
+	var _addCocktail = function(value)
+	{
+		for(var i = 0; i < _cocktails.length; i++)
+		{
+			if(value.Description().toLowerCase() < _cocktails[i].Description().toLowerCase())
+			{
+				_cocktails.splice(i, 0, value);
+				return;
+			}
+		}
+		_cocktails.push(value);
+	}
+	
+	var _addVariantOf = function(baseCocktail, variant)
+	{
+		if(!_variants[baseCocktail])
+		{
+			_variants[baseCocktail] = [];
+		}
+
+		for(var i = 0; i < _variants[baseCocktail].length; i++)
+		{
+			if(_getCocktail(variant).Description().toLowerCase() < _getCocktail(_variants[baseCocktail][i]).Description().toLowerCase())
+			{
+				_variants[baseCocktail].splice(i, 0, variant);
+				return;
+			}
+		}
+		_variants[baseCocktail].push(variant);
+	}
+	
+	this.Glasses = function(){ return _glasses; }
+	this.Ingredients = function(){ return _ingredients; };
+	this.Cocktails = function(){ return _cocktails; };
+	this.Variants = function(){ return _variants; };
+	this.getCocktail = _getCocktail;
+	this.addCocktail = _addCocktail;
+	this.addVariantOf = _addVariantOf;
 }
 
 function CocktailsSettings()

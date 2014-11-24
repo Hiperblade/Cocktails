@@ -49,19 +49,19 @@ function ControllerConstructor()
 		if(filter.Classification != null || filter.DescriptionLike != null)
 		{
 			var ret = [];
-			for(var i = 0; i < data.Cocktails.length; i++)
+			for(var i = 0; i < data.Cocktails().length; i++)
 			{
-				if((_filter.DescriptionLike == null || data.Cocktails[i].Description().toLowerCase().indexOf(_filter.DescriptionLike.toLowerCase().trim()) != -1)
-				&& (_filter.Classification == null || data.Cocktails[i].Classification() == _filter.Classification))
+				if((_filter.DescriptionLike == null || data.Cocktails()[i].Description().toLowerCase().indexOf(_filter.DescriptionLike.toLowerCase().trim()) != -1)
+				&& (_filter.Classification == null || data.Cocktails()[i].Classification() == _filter.Classification))
 				{
-					ret.push(data.Cocktails[i]);
+					ret.push(data.Cocktails()[i]);
 				}
 			}
 			return ret;
 		}
 		else
 		{
-			return data.Cocktails;
+			return data.Cocktails();
 		}
 	}
 
@@ -70,16 +70,16 @@ function ControllerConstructor()
 		if(Boolean(id))
 		{
 			var data = Serializer.getData();
-			for(var i = 0; i < data.Cocktails.length; i++)
+			for(var i = 0; i < data.Cocktails().length; i++)
 			{
-				if(data.Cocktails[i].Id() == id)
+				if(data.Cocktails()[i].Id() == id)
 				{
 					var ret = false;
 					if(_currentCocktail == null)
 					{
 						ret = true;
 					}
-					_currentCocktail = data.Cocktails[i];
+					_currentCocktail = data.Cocktails()[i];
 					View.showCocktail(_currentCocktail);
 					return ret;
 				}
@@ -164,7 +164,7 @@ function ControllerConstructor()
 				else if(_showingEditor == true)
 				{
 					_showingEditor = false;
-					_currentCocktail = View.getCustomCocktail();
+					_currentCocktail = View.getEditorCustomCocktail();
 					Serializer.saveCustomCocktail(_currentCocktail);
 					View.showCocktail(_currentCocktail);
 				}
@@ -242,5 +242,3 @@ CordovaApp.onInitialize = function() { View.start(); };
 CordovaApp.onMenuButton = function() { View.showMenu(); };
 CordovaApp.onBackButton = function() { return View.backMenu(); };
 CordovaApp.onOrientationChange = function() { View.onOrientationChange(); };
-/*CordovaApp.onSwipeLeft = function() { alert("sinistra"); };
-CordovaApp.onSwipeRight = function() { alert("sinistra"); };*/

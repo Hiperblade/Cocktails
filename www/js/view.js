@@ -11,44 +11,41 @@ function ViewConstructor()
 
 	var _setHtml = function(id, text)
 	{
-		$(id).hide();
 		$(id).html(text);
-		$(id).get(0).offsetHeight; // no need to store this anywhere, the reference is enough
-		$(id).show();
 	}
 	
 	var _getIngredientDescription = function(id)
 	{
-		if(Controller.getData().Ingredients[id])
+		if(Controller.getData().Ingredients()[id])
 		{
-			return Controller.getData().Ingredients[id].Description;
+			return Controller.getData().Ingredients()[id].Description;
 		}
 		return id;
 	}
 
 	var _getIngredientImage = function(id)
 	{
-		if(Controller.getData().Ingredients[id])
+		if(Controller.getData().Ingredients()[id])
 		{
-			return IMAGE_DIRECTORY + '/' + "ingredients/" + Controller.getData().Ingredients[id].Image;
+			return IMAGE_DIRECTORY + '/' + "ingredients/" + Controller.getData().Ingredients()[id].Image;
 		}
 		return IMAGE_DIRECTORY + '/' + "ingredients/generic.png";
 	}
 
 	var _getGlassDescription = function(id)
 	{
-		if(Controller.getData().Glasses[id])
+		if(Controller.getData().Glasses()[id])
 		{
-			return Controller.getData().Glasses[id].Description;
+			return Controller.getData().Glasses()[id].Description;
 		}
 		return id;
 	}
 
 	var _getGlassImage = function(id)
 	{
-		if(Controller.getData().Glasses[id])
+		if(Controller.getData().Glasses()[id])
 		{
-			return IMAGE_DIRECTORY + '/' + "glass/" + Controller.getData().Glasses[id].Image;
+			return IMAGE_DIRECTORY + '/' + "glass/" + Controller.getData().Glasses()[id].Image;
 		}
 		return IMAGE_DIRECTORY + '/' + "glass/generic.svg";
 	}
@@ -627,6 +624,18 @@ function ViewConstructor()
 		return text;
 	}
 
+	var _removeSpecialCharFromString = function(value)
+	{
+		// gestione caratteri speciali escape
+		value = value.replace(/\s/g, '');
+		value = value.replace("&", "");
+		value = value.replace("<", "");
+		value = value.replace(">", "");
+		value = value.replace("'", "");
+		value = value.replace("\"", "");
+		return value;
+	}
+	
 	var _getEditorCustomCocktail = function()
 	{
 		// recupera le informazioni dalla form di modifica
@@ -635,7 +644,7 @@ function ViewConstructor()
 		var baseCocktail = $('#EditorVariantOf')[0].value;
 		if(!Boolean(id))
 		{
-			id = description.replace(/\s/g, '');
+			id = _removeSpecialCharFromString(description);
 			
 			if(baseCocktail)
 			{

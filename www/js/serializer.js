@@ -39,11 +39,11 @@ function SerializerConstructor()
 	{
 		_loadData(BASE_DIRECTORY + "/" + IBA_FILE, true, function(){
 			_loadData(BASE_DIRECTORY + "/" + CUSTOM_FILE, false, function(){
-				for(var i = 0; i < _data.Cocktails.length; i++)
+				for(var i = 0; i < _data.Cocktails().length; i++)
 				{
-					if(_data.Cocktails[i].hasVariant())
+					if(_data.Cocktails()[i].hasVariant())
 					{
-						_addVariantOf(_data.Cocktails[i].getBaseCocktail(), _data.Cocktails[i].Id());
+						_data.addVariantOf(_data.Cocktails()[i].getBaseCocktail(), _data.Cocktails()[i].Id());
 					}
 				}
 				if(callback)
@@ -52,49 +52,6 @@ function SerializerConstructor()
 				}
 			});
 		});
-	}
-
-	var _addVariantOf = function(baseCocktail, variant)
-	{
-		if(!_data.Variants[baseCocktail])
-		{
-			_data.Variants[baseCocktail] = [];
-		}
-
-		for(var i = 0; i < _data.Variants[baseCocktail].length; i++)
-		{
-			if(_getCocktail(variant).Description().toLowerCase() < _getCocktail(_data.Variants[baseCocktail][i]).Description().toLowerCase())
-			{
-				_data.Variants[baseCocktail].splice(i, 0, variant);
-				return;
-			}
-		}
-		_data.Variants[baseCocktail].push(variant);
-	}
-	
-	var _addCocktail = function(value)
-	{
-		for(var i = 0; i < _data.Cocktails.length; i++)
-		{
-			if(value.Description().toLowerCase() < _data.Cocktails[i].Description().toLowerCase())
-			{
-				_data.Cocktails.splice(i, 0, value);
-				return;
-			}
-		}
-		_data.Cocktails.push(value);
-	}
-
-	var _getCocktail = function(cocktailId)
-	{
-		for(var i = 0; i < _data.Cocktails.length; i++)
-		{
-			if(_data.Cocktails[i].Id() == cocktailId)
-			{
-				return _data.Cocktails[i];
-			}
-		}
-		return null;
 	}
 
 	var _loadDataFromXml = function(fileContent, iba)
@@ -121,7 +78,7 @@ function SerializerConstructor()
 				{
 					if(nodesParent.childNodes[i].tagName == TAG.Glass)
 					{
-						_data.Glasses[nodesParent.childNodes[i].getAttribute(TAG.Id)] = { Description: nodesParent.childNodes[i].getAttribute(TAG.Description), Image: nodesParent.childNodes[i].getAttribute(TAG.Image) };
+						_data.Glasses()[nodesParent.childNodes[i].getAttribute(TAG.Id)] = { Description: nodesParent.childNodes[i].getAttribute(TAG.Description), Image: nodesParent.childNodes[i].getAttribute(TAG.Image) };
 					}
 				}
 			}
@@ -139,7 +96,7 @@ function SerializerConstructor()
 				{
 					if(nodesParent.childNodes[i].tagName == TAG.Ingredient)
 					{
-						_data.Ingredients[nodesParent.childNodes[i].getAttribute(TAG.Id)] = { Description: nodesParent.childNodes[i].getAttribute(TAG.Description), Image: nodesParent.childNodes[i].getAttribute(TAG.Image) };
+						_data.Ingredients()[nodesParent.childNodes[i].getAttribute(TAG.Id)] = { Description: nodesParent.childNodes[i].getAttribute(TAG.Description), Image: nodesParent.childNodes[i].getAttribute(TAG.Image) };
 					}
 				}
 			}
@@ -177,7 +134,7 @@ function SerializerConstructor()
 								tmp.addIngredient(nodesParent.childNodes[i].childNodes[j].getAttribute(TAG.Id), nodesParent.childNodes[i].childNodes[j].getAttribute(TAG.Quantity), nodesParent.childNodes[i].childNodes[j].getAttribute(TAG.UnitMeasure) );
 							}
 						}
-						_addCocktail(tmp);
+						_data.addCocktail(tmp);
 					}
 				}
 			}
@@ -193,7 +150,7 @@ function SerializerConstructor()
 				System.readFile(fileName, function(fileContent)
 				{
 					_loadDataFromXml(fileContent, iba);
-					Log.debug("LoadData: " + fileName + "\nTotal cocktails: " + _data.Cocktails.length);
+					Log.debug("LoadData: " + fileName + "\nTotal cocktails: " + _data.Cocktails().length);
 					if(callback)
 					{
 						callback();
@@ -309,7 +266,7 @@ function SerializerConstructor()
 			{
 				xmlDoc = _deleteInternalCustomCocktail(xmlDoc, cocktail.Id());
 			}
-			_addCocktail(cocktail);
+			_data.addCocktail(cocktail);
 
 			var xPath = "/CocktailsData/Cocktails";
 			var nodes = xmlDoc.evaluate(xPath, xmlDoc, null, XPathResult.ANY_TYPE, null);
@@ -341,8 +298,8 @@ function SerializerConstructor()
 				{
 					var newCocktailIngredient = xmlDoc.createElement(TAG.Ingredient);
 					newCocktailIngredient.setAttribute(TAG.Id, ingredientId);
-					newCocktailIngredient.setAttribute(TAG.Quantity, _data.Ingredients[ingredientId].Quantity);
-					newCocktailIngredient.setAttribute(TAG.UnitMeasure, _data.Ingredients[ingredientId].UnitMeasure);
+					newCocktailIngredient.setAttribute(TAG.Quantity, _data.Ingredients()[ingredientId].Quantity);
+					newCocktailIngredient.setAttribute(TAG.UnitMeasure, _data.Ingredients()[ingredientId].UnitMeasure);
 					newCocktail.appendChild(newCocktailIngredient);
 				}
 				nodesParent.appendChild(newCocktail);
@@ -380,11 +337,11 @@ function SerializerConstructor()
 
 	var _removeCustomCocktail = function(cocktailId)
 	{
-		for(var i = 0; i < _data.Cocktails.length; i++)
+		for(var i = 0; i < _data.Cocktails().length; i++)
 		{
-			if(_data.Cocktails[i].Id() == cocktailId)
+			if(_data.Cocktails()[i].Id() == cocktailId)
 			{
-				_data.Cocktails.splice(i, 1);
+				_data.Cocktails().splice(i, 1);
 				return true;
 			}
 		}
@@ -409,7 +366,6 @@ function SerializerConstructor()
 	this.getSettings = function() { return _settings; };
 	this.saveSettings = _saveSettings;
 	
-	this.getCocktail = _getCocktail;
 	this.saveCustomCocktail = _saveCustomCocktail;
 	this.deleteCustomCocktail = _deleteCustomCocktail;
 }
