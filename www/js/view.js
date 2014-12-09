@@ -392,11 +392,11 @@ function ViewConstructor()
 		if(cocktail.Id())
 		{
 			text += '<div><input class="EditorControl" type="hidden" id="EditorVariantOf"  value="' + cocktail.getBaseCocktail() + '" />';
-			for(var i = 0; i < data.Cocktails.length; i++)
+			for(var i = 0; i < data.Cocktails().length; i++)
 			{
-				if(data.Cocktails[i].Id() == cocktail.getBaseCocktail())
+				if(data.Cocktails()[i].Id() == cocktail.getBaseCocktail())
 				{
-					text += data.Cocktails[i].Description();
+					text += data.Cocktails()[i].Description();
 					break;
 				}
 			}
@@ -406,14 +406,14 @@ function ViewConstructor()
 		{
 			text += '<div><select class="EditorControl" id="EditorVariantOf">';
 			text +=  '<option value=""></option>';
-			for(var i = 0; i < data.Cocktails.length; i++)
+			for(var i = 0; i < data.Cocktails().length; i++)
 			{
-				text +=  '<option value="' + data.Cocktails[i].Id() + '"';
-				if(data.Cocktails[i].Id() == cocktail.getBaseCocktail())
+				text +=  '<option value="' + data.Cocktails()[i].Id() + '"';
+				if(data.Cocktails()[i].Id() == cocktail.getBaseCocktail())
 				{
 					text += ' selected';
 				}
-				text +=  '>' + data.Cocktails[i].Description() + '</option>';
+				text +=  '>' + data.Cocktails()[i].Description() + '</option>';
 			}
 			text += '</select></div>';
 		}
@@ -463,14 +463,14 @@ function ViewConstructor()
 		text +=  '<div class="Glass EditorGlass">';
 		text +=   '<img class="GlassImage" id="EditorGlassImage" src="' + _getGlassImage(cocktail.Glass()) + '"/>';
 		text +=   '<div class="GlassName"><select id="EditorGlass" onChange="View.setEditorGlassImage(this.value);">';
-		for(var glassId in data.Glasses)
+		for(var glassId in data.Glasses())
 		{
 			text +=  '<option value="' + glassId + '"';
 			if(glassId == cocktail.Glass())
 			{
 				text += ' selected';
 			}
-			text +=  '>' + data.Glasses[glassId].Description + '</option>';
+			text +=  '>' + data.Glasses()[glassId].Description + '</option>';
 		}
 		text += '</select></div>';
 		text +=  '</div>';
@@ -588,14 +588,14 @@ function ViewConstructor()
 		text +=   '<div class="IngredientName"><select class="EditorIngredientControl" id="EditorIngredient_' + _editorIngredientId + '_Id" onChange="View.setEditorIngredientImage(' + _editorIngredientId + ', this.value);">';
 		text +=   '<option value=""></option>';
 		var data = Controller.getData();
-		for(var id in data.Ingredients)
+		for(var id in data.Ingredients())
 		{
 			text +=  '<option value="' + id + '"';
 			if(id == ingredientId)
 			{
 				text += ' selected';
 			}
-			text +=  '>' + data.Ingredients[id].Description + '</option>';
+			text +=  '>' + data.Ingredients()[id].Description + '</option>';
 		}
 		text +=  '</select></div>';
 

@@ -154,7 +154,45 @@ function SystemConstructor()
 			}, _errorHandler);
 		}
 	};
+	
+	var _renameFile = function(fileName, newFileName, callback)
+	{
+		if(_fs)
+		{
+			_fs.root.getFile(fileName, {create: false}, function(fileEntry)
+			{
+				var path = _decombinePath(newFileName);
+				_fs.root.getDirectory(path.directory, {create: true}, function (dirEntry)
+				{
+					fileEntry.moveTo(dirEntry, path.fileName, function ()
+					{
+						Log.debug('File successufully renamed.');
+						if(callback)
+						{
+							callback();
+						}
+					}, _errorHandler);
+				}, _errorHandler);
+			}, _errorHandler);
+		}
+	};
 
+	var _decombinePath = function(fullName)
+	{
+		var ret = { directory: "", fileName: fullName };
+		var index = fullName.lastIndexOf("\\");
+		if(index == -1)
+		{
+			index = fullName.lastIndexOf("/");
+		}
+		if(index > -1)
+		{
+			ret.directory = fullName.substring(0, index);
+			ret.fileName = fullName.substring(index + 1);
+		}
+		return ret;
+	}
+	
 	var _existDirectory =  function(dirName, existCallback, notexistCallback)
 	{
 		if(_fs)

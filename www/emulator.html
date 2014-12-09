@@ -215,6 +215,18 @@
 						callback();
 					}
 				};
+				
+				System.renameFile = function(fileName, newFileName, callback)
+				{
+					var tmp = fileSystem[fileName];
+					fileSystem[fileName] = undefined;
+					_addFile(newFileName, tmp.data);
+					
+					if(callback)
+					{
+						callback();
+					}
+				};
 
 				System.existDirectory = function(dirName, existCallback, notexistCallback)
 				{

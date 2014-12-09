@@ -183,14 +183,19 @@ function SerializerConstructor()
 					// leggo il file
 					if(callback)
 					{
-						System.readFile(CUSTOM_FILE, function(fileContent)
+						System.renameFile(CUSTOM_FILE, "Old_" + CUSTOM_FILE, function()
 						{
-							var xmlDoc = fileContent;
-							if(!xmlDoc.firstChild)
+							System.readFile("Old_" + CUSTOM_FILE, function(fileContent)
 							{
-								xmlDoc = new DOMParser().parseFromString(fileContent, 'text/xml');
-							}
-							System.writeFile(CUSTOM_FILE, new XMLSerializer().serializeToString(callback(xmlDoc).documentElement));
+								var xmlDoc = fileContent;
+								if(!xmlDoc.firstChild)
+								{
+									xmlDoc = new DOMParser().parseFromString(fileContent, 'text/xml');
+								}
+								System.writeFile(CUSTOM_FILE, new XMLSerializer().serializeToString(callback(xmlDoc).documentElement), function() {
+									System.deleteFile("Old_" + CUSTOM_FILE);
+								});
+							});
 						});
 					}
 				},

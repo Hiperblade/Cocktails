@@ -18,20 +18,20 @@ function ControllerConstructor()
 		if(!Boolean(baseCocktail))
 		{
 		
-			if(!Serializer.getData().Variants[cocktail])
+			if(!Serializer.getData().Variants()[cocktail])
 			{
 				return null;
 			}
 			else
 			{
-				return Serializer.getData().Variants[cocktail][0];
+				return Serializer.getData().Variants()[cocktail][0];
 			}
 		}
 
-		var index = Serializer.getData().Variants[baseCocktail].indexOf(cocktail);
-		if(index < Serializer.getData().Variants[baseCocktail].length - 1)
+		var index = Serializer.getData().Variants()[baseCocktail].indexOf(cocktail);
+		if(index < Serializer.getData().Variants()[baseCocktail].length - 1)
 		{
-			return Serializer.getData().Variants[baseCocktail][index + 1];
+			return Serializer.getData().Variants()[baseCocktail][index + 1];
 		}
 		else
 		{
