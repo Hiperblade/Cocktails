@@ -97,7 +97,13 @@ function CocktailsData()
 		{
 			_variants[baseCocktail] = [];
 		}
-
+		// se è già presente la rimuovo
+		var index = _variants[baseCocktail].indexOf(variant);
+		if(index > -1)
+		{
+			_variants[baseCocktail].splice(index, 1);
+		}
+		// iserisco la variante in ordine alfabetico
 		for(var i = 0; i < _variants[baseCocktail].length; i++)
 		{
 			if(_getCocktail(variant).Description().toLowerCase() < _getCocktail(_variants[baseCocktail][i]).Description().toLowerCase())

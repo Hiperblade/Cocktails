@@ -645,11 +645,6 @@ function ViewConstructor()
 		if(!Boolean(id))
 		{
 			id = _removeSpecialCharFromString(description);
-			
-			if(baseCocktail)
-			{
-				Controller.addVariantOf(baseCocktail, id);
-			}
 		}
 		var ret = new Cocktail(id, description, $('#EditorClassification')[0].value, $('#EditorGlass')[0].value, $('#EditorAlcoholicLevel')[0].value);
 		ret.setBaseCocktail(baseCocktail);

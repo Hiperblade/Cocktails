@@ -279,6 +279,11 @@ function SerializerConstructor()
 			}
 			_data.addCocktail(cocktail);
 
+			if(cocktail.getBaseCocktail())
+			{
+				_data.addVariantOf(cocktail.getBaseCocktail(), cocktail.Id());
+			}
+
 			var xPath = "/CocktailsData/Cocktails";
 			var nodes = xmlDoc.evaluate(xPath, xmlDoc, null, XPathResult.ANY_TYPE, null);
 			var nodesParent;
