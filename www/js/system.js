@@ -325,6 +325,7 @@ function SystemConstructor()
 	this.writeFile = _writeFile;
 	this.readFile = _readFile;
 	this.deleteFile = _deleteFile;
+	this.renameFile = _renameFile;
 	this.existDirectory = _existDirectory;
 	this.createDirectory = _createDirectory;
 	this.deleteDirectory = _deleteDirectory;

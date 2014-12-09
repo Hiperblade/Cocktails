@@ -143,6 +143,7 @@ function SerializerConstructor()
 
 	var _loadData = function(fileName, iba, callback)
 	{
+		_initializeSettings();
 		try
 		{
 			System.existFile(fileName, function()
@@ -220,6 +221,11 @@ function SerializerConstructor()
 				Log.error("UpdateCustomData ERROR: " + e.message);
 			}
 		}
+	}
+
+	var _initializeSettings = function()
+	{
+		_settings.ConversionType = BASE_UNIT_MEASURE.CL;
 	}
 
 	var _loadSettings = function(xmlDoc)

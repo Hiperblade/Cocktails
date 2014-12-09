@@ -122,7 +122,7 @@ function ViewConstructor()
 		switch(unitMeasure)
 		{
 			case UNIT_MEASURE.Cl:
-				switch(Controller.getSettings('BaseUnitMeasure'))
+				switch(Controller.getSettings('ConversionType'))
 				{
 					case BASE_UNIT_MEASURE.OZQ:
 						// intero
@@ -224,7 +224,7 @@ function ViewConstructor()
 		{
 			case UNIT_MEASURE.Cl:
 				// Cl, Oz or 1/4Oz
-				switch(Controller.getSettings('BaseUnitMeasure'))
+				switch(Controller.getSettings('ConversionType'))
 				{
 					case BASE_UNIT_MEASURE.CL:
 						return 'cl'; 
@@ -325,7 +325,7 @@ function ViewConstructor()
 	{
 		var text = '<div class="applicationTitle">Settings</div>';
 		text += '<div class="EditorGroup"><div class="SettingsLabel">Principal unit measure: </div>';
-		text += '<select class="SettingsControl" onChange="Controller.setSettings(\'UnitMeasure\', this.value);">';
+		text += '<select class="SettingsControl" onChange="Controller.setSettings(\'ConversionType\', this.value);">';
 
 		if(settings.UnitMeasure != BASE_UNIT_MEASURE.CL)
 		{
@@ -610,7 +610,7 @@ function ViewConstructor()
 		for(var unitId in UNIT_MEASURE)
 		{
 			text +=  '<option value="' + UNIT_MEASURE[unitId] + '"';
-			if(unitId == ingredient.UnitMeasure)
+			if(UNIT_MEASURE[unitId] == ingredient.UnitMeasure)
 			{
 				text += ' selected';
 			}
