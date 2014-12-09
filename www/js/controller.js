@@ -92,6 +92,12 @@ function ControllerConstructor()
 		}
 	}
 	
+	var _addVariantOf = function(baseCocktail, variant)
+	{
+		var data = Serializer.getData();
+		data.addVariantOf(baseCocktail, variant);
+	}
+	
 	var _getMenuButtons = function()
 	{
 		if(_showingSettings == true)
@@ -136,7 +142,17 @@ function ControllerConstructor()
 				break;
 			case "ADD":
 				_showingEditor = true;
-				View.showEditor(new Cocktail("", "", "AllDay", "Cocktail", "Higt", false));
+				var newCocktail;
+				if(_currentCocktail)
+				{
+					newCocktail = _currentCocktail.clone();
+					newCocktail.setBaseCocktail(_currentCocktail.Id());
+				}
+				else
+				{
+					newCocktail = new Cocktail("", "", "AllDay", "Cocktail", "Higt", false);
+				}
+				View.showEditor(newCocktail);
 				break;
 			case "EDIT":
 				_showingEditor = true;
@@ -230,6 +246,7 @@ function ControllerConstructor()
 	this.getList = _getList;
 	this.getNextVariantOf = _getNextVariantOf;
 	this.setCurrentCocktail = _setCurrentCocktail;
+	this.addVariantOf = _addVariantOf;
 	// menù
 	this.getMenuButtons = _getMenuButtons;
 	this.execute = _execute;

@@ -2,7 +2,7 @@
 var BASE_UNIT_MEASURE = { CL: "CL", OZ: "OZ", OZQ: "OZQ" };
 var UNIT_MEASURE = { Cl: "", Fill: "fill", Pcs: "pcs", Splash: "spash", Spoon: "spoon", Drop: "drop" };
 var CLASSIFICATION = [ "Shot", "LongDrink", "AfterDinner", "BeforeDinner", "AllDay", "Refreshing", "Sparkling", "HotDrink" ];
-var TECHNIQUES = [ "Blend", "Build", "Layer", "Mix &amp; Pour", "Muddler", "Shake &amp; Strain", "Shake &amp; Strain on Rocks", "Shake &amp; Pour", "Stir &amp; Strain", "Swizzle", "Throwing" ];
+var TECHNIQUES = [ "Blend", "Build", "Layer", "Mix & Pour", "Muddler", "Shake & Strain", "Shake & Strain on Rocks", "Shake & Pour", "Stir & Strain", "Swizzle", "Throwing" ];
 var ALCOHOLIC_LEVELS = [ "None", "Low", "Medium-Low", "Medium", "Medium-High", "High" ];
 
 function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
@@ -25,6 +25,17 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 	{
 		_ingredients[id] = { Quantity: quantity, UnitMeasure: unitMeasure };
 	}
+	
+	var _clone = function()
+	{
+		var ret = new Cocktail("", _description + " new", _classification, _glass, _alcoholicLevel, false);
+		ret.setInfo(_technique, _garnish, _info);
+		for(var id in _ingredients)
+		{
+			ret.addIngredient(id, _ingredients[id].Quantity, _ingredients[id].UnitMeasure);
+		}
+		return ret;
+	}
 
 	this.Id = function () { return _id; };
 	this.Description = function () { return _description; };
@@ -44,6 +55,8 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 
 	this.addIngredient = _addIngredient;
 	this.getIngredients = function() { return _ingredients; };
+	
+	this.clone = _clone;
 }
 
 function CocktailsData()

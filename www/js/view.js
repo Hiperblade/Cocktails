@@ -648,7 +648,7 @@ function ViewConstructor()
 			
 			if(baseCocktail)
 			{
-				_addVariantOf(baseCocktail, id);
+				Controller.addVariantOf(baseCocktail, id);
 			}
 		}
 		var ret = new Cocktail(id, description, $('#EditorClassification')[0].value, $('#EditorGlass')[0].value, $('#EditorAlcoholicLevel')[0].value);

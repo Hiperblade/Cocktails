@@ -364,7 +364,7 @@ function SerializerConstructor()
 			});
 		}
 	}
-
+		
 	this.start = _start;
 	this.getData = function() { return _data; };
 	
