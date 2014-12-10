@@ -146,7 +146,14 @@ function ControllerConstructor()
 				if(_currentCocktail)
 				{
 					newCocktail = _currentCocktail.clone();
-					newCocktail.setBaseCocktail(_currentCocktail.Id());
+					if(_currentCocktail.getBaseCocktail())
+					{
+						newCocktail.setBaseCocktail(_currentCocktail.getBaseCocktail());
+					}
+					else
+					{
+						newCocktail.setBaseCocktail(_currentCocktail.Id());
+					}
 				}
 				else
 				{
