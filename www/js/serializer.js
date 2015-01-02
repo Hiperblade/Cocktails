@@ -179,22 +179,23 @@ function SerializerConstructor()
 		{
 			try
 			{
-				System.existFile(CUSTOM_FILE, function()
+				System.existFile(BASE_DIRECTORY + "/" + CUSTOM_FILE, function(fileEntry)
 				{
 					// leggo il file
 					if(callback)
 					{
-						System.renameFile(CUSTOM_FILE, "Old_" + CUSTOM_FILE, function()
+						System.renameFile(BASE_DIRECTORY + "/" + CUSTOM_FILE, BASE_DIRECTORY + "/Old_" + CUSTOM_FILE, function()
 						{
-							System.readFile("Old_" + CUSTOM_FILE, function(fileContent)
+							System.readFile(BASE_DIRECTORY + "/Old_" + CUSTOM_FILE, function(fileContent)
 							{
 								var xmlDoc = fileContent;
 								if(!xmlDoc.firstChild)
 								{
 									xmlDoc = new DOMParser().parseFromString(fileContent, 'text/xml');
 								}
-								System.writeFile(CUSTOM_FILE, new XMLSerializer().serializeToString(callback(xmlDoc).documentElement), function() {
-									System.deleteFile("Old_" + CUSTOM_FILE);
+								var data = new XMLSerializer().serializeToString(callback(xmlDoc).documentElement);
+								System.writeFile(BASE_DIRECTORY + "/" + CUSTOM_FILE, data, function() {
+									System.deleteFile(BASE_DIRECTORY + "/Old_" + CUSTOM_FILE);
 								});
 							});
 						});
@@ -207,11 +208,11 @@ function SerializerConstructor()
 					System.createDirectory(BASE_DIRECTORY, function() {
 						if(callback)
 						{
-							System.writeFile(CUSTOM_FILE, new XMLSerializer().serializeToString(callback(xmlDoc).documentElement));
+							System.writeFile(BASE_DIRECTORY + "/" + CUSTOM_FILE, new XMLSerializer().serializeToString(callback(xmlDoc).documentElement));
 						}
 						else
 						{
-							System.writeFile(CUSTOM_FILE, new XMLSerializer().serializeToString(xmlDoc.documentElement));
+							System.writeFile(BASE_DIRECTORY + "/" + CUSTOM_FILE, new XMLSerializer().serializeToString(xmlDoc.documentElement));
 						}
 					});
 				});
@@ -314,8 +315,8 @@ function SerializerConstructor()
 				{
 					var newCocktailIngredient = xmlDoc.createElement(TAG.Ingredient);
 					newCocktailIngredient.setAttribute(TAG.Id, ingredientId);
-					newCocktailIngredient.setAttribute(TAG.Quantity, _data.Ingredients()[ingredientId].Quantity);
-					newCocktailIngredient.setAttribute(TAG.UnitMeasure, _data.Ingredients()[ingredientId].UnitMeasure);
+					newCocktailIngredient.setAttribute(TAG.Quantity, ingredients[ingredientId].Quantity);
+					newCocktailIngredient.setAttribute(TAG.UnitMeasure, ingredients[ingredientId].UnitMeasure);
 					newCocktail.appendChild(newCocktailIngredient);
 				}
 				nodesParent.appendChild(newCocktail);

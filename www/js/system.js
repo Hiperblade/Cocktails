@@ -76,7 +76,7 @@ function SystemConstructor()
 				Log.error("FileError.PATH_EXISTS_ERR");
 				break;
 			default:
-				Log.error("FileError: " + error.code);
+				Log.error("FileError: " + err.code);
 				break;
 		}
 	};
@@ -101,10 +101,8 @@ function SystemConstructor()
 			{
 				fileEntry.createWriter(function(fileWriter)
 				{
-					window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
-					var bb = new BlobBuilder();
-					bb.append(data);
-					fileWriter.write(bb.getBlob('text/plain'));
+					var blob = new Blob([data], {type:'text/plain'});
+					fileWriter.write(blob);
 					Log.debug('File successufully saved.');
 					if(callback)
 					{
