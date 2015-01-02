@@ -44,7 +44,7 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, type)
 	this.Glass = function () { return _glass; };
 	this.AlcoholicLevel = function() { return _alcoholicLevel; };
 	this.Type = function() { return _type; };
-	this.IsModifiable = function() { return COCKTAIL_TYPE.Custom.equals(_type); } ;
+	this.IsModifiable = function() { return COCKTAIL_TYPE.Custom == _type; } ;
 
 	this.setBaseCocktail = function(baseCocktail) { _baseCocktail = baseCocktail; };
 	this.getBaseCocktail = function() { return _baseCocktail; };
