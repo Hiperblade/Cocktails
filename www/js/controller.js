@@ -112,7 +112,7 @@ function ControllerConstructor()
 		}
 		else if(_currentCocktail != null)
 		{
-			if(_currentCocktail.Iba() == true)
+			if(_currentCocktail.IsModifiable() == false)
 			{
 				return [ { Command: "SETTINGS", Image: "img/settings.svg", Text: "Settings" },
 					 { Command: "ADD", Image: "img/add.svg", Text: "Add New Cocktail" } ];

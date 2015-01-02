@@ -299,6 +299,15 @@ function SystemConstructor()
 		});
 	};
 
+	var _downloadFile = function(fileNameUri, baseDirectory, fileName, callback)
+	{
+		_createDirectory(baseDirectory, function() {
+			_getTextFile(fileNameUri, function(xml){
+				_writeFile(baseDirectory + "/" + fileName, xml, callback);
+			});
+		});
+	};
+
 	var _setScrollTop = function(position)
 	{
 		$(window).scrollTop(position);
@@ -316,6 +325,7 @@ function SystemConstructor()
 	this.getXmlFile = function(filename, callback) { return _getFile(filename, "xml", callback); };
 	this.getJsonFile = function(filename, callback) { return _getFile(filename, "json", callback); };
 	this.createIfNotExists = _createIfNotExists;
+	this.downloadFile = _downloadFile;
 
 	this.supportFileSystem = _supportFileSystem;
 	this.initialize = _initialize;

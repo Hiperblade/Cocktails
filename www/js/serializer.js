@@ -23,6 +23,7 @@ function SerializerConstructor()
 	var BASE_DIRECTORY = "Cocktails";
 	var IBA_FILE = "iba.xml";
 	var CUSTOM_FILE = "custom.xml";
+	var REMOTE_FILE = "remote.xml";
 	
 	var _data;
 	var _settings;
@@ -31,30 +32,53 @@ function SerializerConstructor()
 	{
 		_data = new CocktailsData();
 		_settings = new CocktailsSettings();
-		
+
 		System.createIfNotExists(BASE_DIRECTORY, IBA_FILE, function(){ _internalStart(callback); });
 	}
 
 	var _internalStart = function(callback)
 	{
-		_loadData(BASE_DIRECTORY + "/" + IBA_FILE, true, function(){
-			_loadData(BASE_DIRECTORY + "/" + CUSTOM_FILE, false, function(){
-				for(var i = 0; i < _data.Cocktails().length; i++)
-				{
-					if(_data.Cocktails()[i].hasVariant())
+		_loadData(BASE_DIRECTORY + "/" + IBA_FILE, COCKTAIL_TYPE.Iba, function(){
+			_loadData(BASE_DIRECTORY + "/" + REMOTE_FILE, COCKTAIL_TYPE.Remote, function(){
+				_loadData(BASE_DIRECTORY + "/" + CUSTOM_FILE, COCKTAIL_TYPE.Custom, function(){
+					_initializeVariant();
+					if(callback)
 					{
-						_data.addVariantOf(_data.Cocktails()[i].getBaseCocktail(), _data.Cocktails()[i].Id());
+						callback(_data);
 					}
-				}
-				if(callback)
-				{
-					callback(_data);
-				}
+				});
 			});
 		});
 	}
 
-	var _loadDataFromXml = function(fileContent, iba)
+	var _initializeVariant = function()
+	{
+		for(var i = 0; i < _data.Cocktails().length; i++)
+		{
+			if(_data.Cocktails()[i].hasVariant())
+			{
+				_data.addVariantOf(_data.Cocktails()[i].getBaseCocktail(), _data.Cocktails()[i].Id());
+			}
+		}
+	}
+
+	var _updateRemote = function(remotefileUri)
+	{
+		if(remotefileUri)
+		{
+			System.downloadFile(remotefileUri, BASE_DIRECTORY, REMOTE_FILE, function(){
+				_loadData(BASE_DIRECTORY + "/" + REMOTE_FILE, false, function(){
+					_initializeVariant();
+				});
+			});
+		}
+		else
+		{
+			System.deleteFile(BASE_DIRECTORY + "/" + REMOTE_FILE);
+		}
+	}
+
+	var _loadDataFromXml = function(fileContent, cocktailType)
 	{
 		var xmlDoc = fileContent;
 		if(!xmlDoc.firstChild)
@@ -115,7 +139,7 @@ function SerializerConstructor()
 				{
 					if(nodesParent.childNodes[i].tagName == TAG.Cocktail)
 					{
-						tmp = new Cocktail(nodesParent.childNodes[i].getAttribute(TAG.Id), nodesParent.childNodes[i].getAttribute(TAG.Description), nodesParent.childNodes[i].getAttribute(TAG.Classification), nodesParent.childNodes[i].getAttribute(TAG.GlassType), nodesParent.childNodes[i].getAttribute(TAG.AlcoholicLevel), iba);
+						tmp = new Cocktail(nodesParent.childNodes[i].getAttribute(TAG.Id), nodesParent.childNodes[i].getAttribute(TAG.Description), nodesParent.childNodes[i].getAttribute(TAG.Classification), nodesParent.childNodes[i].getAttribute(TAG.GlassType), nodesParent.childNodes[i].getAttribute(TAG.AlcoholicLevel), cocktailType);
 
 						var baseCocktail = nodesParent.childNodes[i].getAttribute("variantOf");
 						if(baseCocktail)
@@ -141,7 +165,7 @@ function SerializerConstructor()
 		}
 	}
 
-	var _loadData = function(fileName, iba, callback)
+	var _loadData = function(fileName, cocktailType, callback)
 	{
 		_initializeSettings();
 		try
@@ -150,7 +174,7 @@ function SerializerConstructor()
 			{
 				System.readFile(fileName, function(fileContent)
 				{
-					_loadDataFromXml(fileContent, iba);
+					_loadDataFromXml(fileContent, cocktailType);
 					Log.debug("LoadData: " + fileName + "\nTotal cocktails: " + _data.Cocktails().length);
 					if(callback)
 					{
@@ -227,6 +251,7 @@ function SerializerConstructor()
 	var _initializeSettings = function()
 	{
 		_settings.ConversionType = BASE_UNIT_MEASURE.CL;
+		_settings.RemoteUri = "";
 	}
 
 	var _loadSettings = function(xmlDoc)
@@ -243,7 +268,12 @@ function SerializerConstructor()
 				var newValue = nodesParent.getAttribute("conversionType");
 				if(newValue)
 				{
-					_settings.ConversionType = nodesParent.getAttribute("conversionType");
+					_settings.ConversionType = newValue;
+				}
+				newValue = nodesParent.getAttribute("remoteUri");
+				if(newValue)
+				{
+					_settings.RemoteUri = newValue;
 				}
 			}
 		}
@@ -263,10 +293,13 @@ function SerializerConstructor()
 				if(nodesParent)
 				{
 					nodesParent.setAttribute("conversionType", _settings.ConversionType);
+					nodesParent.setAttribute("remoteUri", _settings.RemoteUri);
 				}
 			}
 			return xmlDoc;
 		});
+
+		_updateRemote(_settings.RemoteUri);
 	}
 
 	var _saveCustomCocktail = function(cocktail)
@@ -385,6 +418,8 @@ function SerializerConstructor()
 	
 	this.saveCustomCocktail = _saveCustomCocktail;
 	this.deleteCustomCocktail = _deleteCustomCocktail;
+
+	this.updateRemote = _updateRemote;
 }
 
 Serializer = new SerializerConstructor();

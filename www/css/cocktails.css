@@ -170,7 +170,7 @@
 	height: 100%;
 }
 
-.Iba
+.CocktailType
 {
 	font-size: 0.25em;
 	display: inline;
@@ -294,12 +294,26 @@
 {
 	display: inline-block;
 	width: 40%;
+	vertical-align: middle;
 }
 
 .SettingsControl
 {
 	display: inline-block;
 	width: 60%;
+	vertical-align: middle;
+}
+
+.SettingsControlA
+{
+	display: inline-block;
+	width: 70%;
+}
+
+.SettingsControlB
+{
+	display: inline-block;
+	width: 25%;
 }
 
 .EditorButton

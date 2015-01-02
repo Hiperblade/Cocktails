@@ -101,13 +101,18 @@ function ViewConstructor()
 			{
 				text += '<div class="Element" onclick="View.setCurrentCocktail(\'' + cocktailsList[i].Id() + '\');">';
 				text +=  '<div class="ElementName">' + cocktailsList[i].Description();
-				if(cocktailsList[i].Iba())
+				if(cocktailsList[i].Type() == COCKTAIL_TYPE.Iba)
 				{
-					text += '<div class="Iba"> (IBA)</div>';
+					text += '<div class="CocktailType"> (IBA)</div>';
 				}
+				else if(cocktailsList[i].Type() == COCKTAIL_TYPE.Remote)
+				{
+					text += '<div class="CocktailType"> (R)</div>';
+				}
+
 				if(cocktailsList[i].hasVariant())
 				{
-					text += '<div class="Iba"> (*)</div>';
+					text += '<div class="CocktailType"> (*)</div>';
 				}
 				text +=  '</div>';
 				text +=  '<div class="ElementInfo">' + cocktailsList[i].Classification() + '</div>';
@@ -249,13 +254,19 @@ function ViewConstructor()
 			text += '<div class="Cocktail">';
 			text +=  '<div class="CocktailNameBox">';
 			text +=  '<div class="CocktailName" onClick="View.backMenu()">' + cocktail.Description();
-			if(cocktail.Iba())
+
+			if(cocktail.Type() == COCKTAIL_TYPE.Iba)
 			{
-				text += '<div class="Iba"> (IBA)</div>';
+				text += '<div class="CocktailType"> (IBA)</div>';
 			}
+			else if(cocktail.Type() == COCKTAIL_TYPE.Remote)
+			{
+				text += '<div class="CocktailType"> (R)</div>';
+			}
+
 			if(cocktail.hasVariant())
 			{
-				text += '<div class="Iba"> (*)</div>';
+				text += '<div class="CocktailType"> (*)</div>';
 			}
 			text +=  '</div>';
 			var nextVariant = Controller.getNextVariantOf(cocktail.getBaseCocktail(), cocktail.Id());
@@ -324,7 +335,7 @@ function ViewConstructor()
 	var _showSettings = function(settings)
 	{
 		var text = '<div class="applicationTitle">Settings</div>';
-		text += '<div class="EditorGroup"><div class="SettingsLabel">Principal unit measure: </div>';
+		text += '<div class="EditorGroup"><div class="SettingsLabel">Unit measure: </div>';
 		text += '<select class="SettingsControl" onChange="Controller.setSettings(\'ConversionType\', this.value);">';
 
 		if(settings.UnitMeasure != BASE_UNIT_MEASURE.CL)
@@ -355,6 +366,11 @@ function ViewConstructor()
 		}
 
 		text += '</select></div>';
+
+		text += '<div class="EditorGroup"><div class="SettingsLabel">Remote file: </div>';
+		text += '<div class="SettingsControl"><input id="remoteUri"  class="SettingsControlA" value="' + settings.RemoteUri + '" />';
+		text += '<button class="SettingsControlB" onClick="Controller.setSettings(\'RemoteUri\', $("#remoteUri").value);">Update</button>';
+		text += '</div></div>';
 
 		text += '<div class="Credits"><div class="applicationTitle">Credits</div>';
 		text += '<div><img class="CreditsPhoto" src="img/credits.jpg" />';

@@ -113,6 +113,7 @@
 		<Ingredient id="SugarBrown" description="Sugar Brown" image="SugarBrown.png" />
 		<Ingredient id="SugarCube" description="Sugar Cube" image="SugarCube.png" />
 		<Ingredient id="SugarSyrup" description="Sugar Syrup" image="SugarSyrup.png" />
+		<Ingredient id="SweetAndSour" description="Sweet and Sour" image="SweetAndSour.png" />
 		<Ingredient id="Tabasco" description="Tabasco" image="Tabasco.png" />
 		<Ingredient id="Tequila" description="Tequila" image="Tequila.png" />
 		<Ingredient id="Tomato" description="Tomato" image="Tomato.png" />

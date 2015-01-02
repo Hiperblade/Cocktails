@@ -4,15 +4,16 @@ var UNIT_MEASURE = { Cl: "", Fill: "fill", Pcs: "pcs", Splash: "spash", Spoon: "
 var CLASSIFICATION = [ "Shot", "LongDrink", "AfterDinner", "BeforeDinner", "AllDay", "Refreshing", "Sparkling", "HotDrink" ];
 var TECHNIQUES = [ "Blend", "Build", "Layer", "Mix & Pour", "Muddler", "Shake & Strain", "Shake & Strain on Rocks", "Shake & Pour", "Stir & Strain", "Swizzle", "Throwing" ];
 var ALCOHOLIC_LEVELS = [ "None", "Low", "Medium-Low", "Medium", "Medium-High", "High" ];
+var COCKTAIL_TYPE = { Iba: "iba", Remote: "remote", Custom: "custom" };
 
-function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
+function Cocktail(id, description, classification, glass, alcoholicLevel, type)
 {
 	var _id = id;
 	var _description = description;
 	var _classification = classification;
 	var _glass = glass;
 	var _alcoholicLevel = alcoholicLevel;
-	var _iba = iba;
+	var _type = type;
 
 	var _baseCocktail = null;
 
@@ -42,7 +43,8 @@ function Cocktail(id, description, classification, glass, alcoholicLevel, iba)
 	this.Classification = function () { return _classification; };
 	this.Glass = function () { return _glass; };
 	this.AlcoholicLevel = function() { return _alcoholicLevel; };
-	this.Iba = function() { return _iba; };
+	this.Type = function() { return _type; };
+	this.IsModifiable = function() { return COCKTAIL_TYPE.Custom.equals(_type); } ;
 
 	this.setBaseCocktail = function(baseCocktail) { _baseCocktail = baseCocktail; };
 	this.getBaseCocktail = function() { return _baseCocktail; };
