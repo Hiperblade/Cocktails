@@ -249,6 +249,7 @@ function ControllerConstructor()
 	this.start = _start;
 	this.setSettings = function(key, value) { Serializer.getSettings()[key] = value; }
 	this.getSettings = function(key) { return Serializer.getSettings()[key]; }
+	this.updateRemote = function() { Serializer.updateRemote(); }
 	this.getData = function() { return Serializer.getData(); };
 	this.getList = _getList;
 	this.getNextVariantOf = _getNextVariantOf;

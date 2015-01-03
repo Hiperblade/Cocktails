@@ -368,8 +368,8 @@ function ViewConstructor()
 		text += '</select></div>';
 
 		text += '<div class="EditorGroup"><div class="SettingsLabel">Remote file: </div>';
-		text += '<div class="SettingsControl"><input id="remoteUri"  class="SettingsControlA" value="' + settings.RemoteUri + '" />';
-		text += '<button class="SettingsControlB" onClick="Controller.setSettings(\'RemoteUri\', $("#remoteUri").value);">Update</button>';
+		text += '<div class="SettingsControl"><input id="remoteUri" onChange="Controller.setSettings(\'RemoteUri\', this.value);" class="SettingsControlA" value="' + settings.RemoteUri + '" />';
+		text += '<button class="SettingsControlB" onClick="Controller.updateRemote();">Update</button>';
 		text += '</div></div>';
 
 		text += '<div class="Credits"><div class="applicationTitle">Credits</div>';

@@ -62,12 +62,12 @@ function SerializerConstructor()
 		}
 	}
 
-	var _updateRemote = function(remotefileUri)
+	var _updateRemote = function()
 	{
-		if(remotefileUri)
+		if(_settings.RemoteUri)
 		{
-			System.downloadFile(remotefileUri, BASE_DIRECTORY, REMOTE_FILE, function(){
-				_loadData(BASE_DIRECTORY + "/" + REMOTE_FILE, false, function(){
+			System.downloadFile(_settings.RemoteUri, BASE_DIRECTORY, REMOTE_FILE, function(){
+				_loadData(BASE_DIRECTORY + "/" + REMOTE_FILE, COCKTAIL_TYPE.Remote, function(){
 					_initializeVariant();
 				});
 			});
@@ -298,8 +298,6 @@ function SerializerConstructor()
 			}
 			return xmlDoc;
 		});
-
-		_updateRemote(_settings.RemoteUri);
 	}
 
 	var _saveCustomCocktail = function(cocktail)

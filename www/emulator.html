@@ -322,6 +322,15 @@
 					});
 				};
 
+				System.downloadFile = function(fileNameUri, baseDirectory, fileName, callback)
+				{
+					System.createDirectory(baseDirectory, function() {
+						System.getTextFile(fileNameUri, function(xml){
+							System.writeFile(baseDirectory + "/" + fileName, xml, callback);
+						});
+					});
+				};
+
 				System.addFile = _addFile;
 				
 				System.setScrollTop = function(position)
